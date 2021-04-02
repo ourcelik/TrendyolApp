@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrendyolApp.View.LoginPage"
+             xmlns:local="clr-namespace:TrendyolApp.CustomRenderer"
+             >
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Grid>
+                <StackLayout  Padding="0" Margin="0">
+                    <Frame BackgroundColor="#ff663a" HeightRequest="250" HorizontalOptions="FillAndExpand">
+                        <StackLayout Padding="80,10">
+                            <Image Source="logo.png"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Margin="15,190,15,0" >
+                    <Frame CornerRadius="15" BackgroundColor="White" HasShadow="True" HeightRequest="320" HorizontalOptions="FillAndExpand">
+                        <StackLayout>
+                            <Grid>
+                                <Frame BackgroundColor="#ffff" HeightRequest="15" WidthRequest="300" TabIndex="1" Padding="0,0,0,0">
+                                </Frame>
+                                <local:CustomEntry Placeholder=" E-Posta" TextColor="Gray" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                            </Grid>
+                            <Grid Margin="0,20,0,0">
+                                <Frame BackgroundColor="#ffff" HeightRequest="15" WidthRequest="300" TabIndex="1" Padding="0,0,0,0">
+                                </Frame>
+                                <local:CustomEntry Placeholder=" E-Posta" TextColor="Gray" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                            </Grid>
+
+                            <StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                </StackLayout.GestureRecognizers>
+                                <local:CustomLabel Text="Şifremi Unuttum" TextColor="#ff663a" HorizontalOptions="End"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+
+                </StackLayout>
+
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

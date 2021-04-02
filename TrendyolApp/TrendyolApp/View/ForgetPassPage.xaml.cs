@@ -10,17 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace TrendyolApp.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AccountPage : ContentPage
+    public partial class ForgetPassPage : ContentPage
     {
-        public AccountPage()
+        public ForgetPassPage()
         {
             InitializeComponent();
-
-        }
-
-        private void ToolbarItem_Clicked(object sender, EventArgs e)
-        {
-            this.Navigation.PushModalAsync(new LoginPage());
         }
     }
 }

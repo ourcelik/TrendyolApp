@@ -19,6 +19,7 @@ namespace TrendyolApp.View
         FavouritePage _favouritePage;
         HomePage _homePage;
         CategoryPage _categoryPage;
+        LoginPage _loginPage;
 
         public TabPage()
         {
@@ -28,6 +29,8 @@ namespace TrendyolApp.View
         }
         public void AddPages()
         {
+            _loginPage = new LoginPage();
+            _loginPage.Title = "Giriş Yap";
             _accountPage = new AccountPage();
             _accountPage.Title = "Hesabım";
             _accountPage.IconImageSource = "user.png";
@@ -52,14 +55,14 @@ namespace TrendyolApp.View
             this.Children.Add(_favouritePage);
             this.Children.Add(_cartPage);
             this.Children.Add(_nav);
-            
+
         }
 
         private void TabPage_CurrentPageChanged(object sender, EventArgs e)
         {
             if (this.CurrentPage is NavigationBar)
             {
-                _accountPage.Navigation.PushModalAsync(_registerPage);
+                _accountPage.Navigation.PushModalAsync(_loginPage);
 
             }
         }
