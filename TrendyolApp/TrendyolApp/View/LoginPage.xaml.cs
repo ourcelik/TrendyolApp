@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using TrendyolApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,6 +19,10 @@ namespace TrendyolApp.View
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             this.Navigation.PushModalAsync(new ForgetPassPage());
+        }
+        private void Register(object sender, EventArgs e)
+        {
+            this.Navigation.PushModalAsync(new RegisterPage());
         }
 
     }
