@@ -7,20 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace TrendyolApp.View
+namespace TrendyolApp.View.NavigationPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomePage : ContentPage
+    public partial class NavigationBar : NavigationPage
     {
-        public HomePage()
+        public NavigationBar(Page page) : base(page)
         {
             InitializeComponent();
         }
-
-        private void ToolbarItem_Clicked(object sender, EventArgs e)
-        {
-            this.Navigation.PushModalAsync(new LoginPage());
-        }
-
     }
 }

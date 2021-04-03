@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace TrendyolApp.View
+namespace TrendyolApp.View.CategoryPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NavigationBar : NavigationPage
+    public partial class SuperMarketPage : ContentPage
     {
-        public NavigationBar(Page page):base(page)
+        public SuperMarketPage()
         {
             InitializeComponent();
         }

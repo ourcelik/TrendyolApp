@@ -1,12 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TrendyolApp.View.HomePage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" /> 
+             x:Class="TrendyolApp.View.HomePage"
+             >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="notification.png" Clicked="ToolbarItem_Clicked">
+
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <NavigationPage.TitleView>
+
+        <Frame Padding="0" Margin="5" CornerRadius="15" HasShadow="False">
+            <SearchBar  Placeholder="Marka, ürün veya kategori ara" VerticalOptions="Center">
+            </SearchBar>
+        </Frame>
+
+    </NavigationPage.TitleView>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0" BackgroundColor="White">
+            <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Kadın" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
+                    <Button Text="Erkek" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
+                    <Button Text="Ev-Yaşam" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
+                    <Button Text="Süpermarket" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
+                    <Button Text="Çocuk" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
+                    <Button Text="Kozmetik" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
+                    <Button Text="Ayakkabı-Çanta" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
+                    <Button Text="Spor-Outdoor" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
+                    <Button Text="Elektronik" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
+                    <Button Text="Saat-Aksesuar" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
+                    <Button Text="Trendyolmilla" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
+                    <Button Text="Luxury-Designer" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
+                    <Button Text="Moda" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
-    </ContentPage.Content>
+    </Grid>
 </ContentPage>

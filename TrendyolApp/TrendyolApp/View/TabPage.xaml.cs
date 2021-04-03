@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using TrendyolApp.View.NavigationPages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,7 +12,8 @@ namespace TrendyolApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TabPage : TabbedPage
     {
-        NavigationPage _nav;
+        NavigationBar _accountNav;
+        HomeNavigationPage _homeNavigationPage;
         RegisterPage _registerPage;
         AccountPage _accountPage;
         CartPage _cartPage;
@@ -38,9 +39,9 @@ namespace TrendyolApp.View
             _categoryPage.Title = "Kategoriler";
             _categoryPage.IconImageSource = "loupe.png";
             _registerPage = new RegisterPage();
-            _nav = new NavigationBar(_accountPage);
-            _nav.Title = "Hesabım";
-            _nav.IconImageSource = "user.png";
+            _accountNav = new NavigationBar(_accountPage);
+            _accountNav.Title = "Hesabım";
+            _accountNav.IconImageSource = "user.png";
             _cartPage = new CartPage();
             _cartPage.IconImageSource = "cart.png";
             _cartPage.Title = "Sepetim";
@@ -48,13 +49,15 @@ namespace TrendyolApp.View
             _favouritePage.Title = "Favoriler";
             _favouritePage.IconImageSource = "heart.png";
             _homePage = new HomePage();
-            _homePage.Title = "Anasayfa";
-            _homePage.IconImageSource = "home.png";
-            this.Children.Add(_homePage);
+            _homeNavigationPage = new HomeNavigationPage(_homePage);
+            _homeNavigationPage.Title = "Anasayfa";
+            _homeNavigationPage.IconImageSource = "home.png";
+
+            this.Children.Add(_homeNavigationPage);
             this.Children.Add(_categoryPage);
             this.Children.Add(_favouritePage);
             this.Children.Add(_cartPage);
-            this.Children.Add(_nav);
+            this.Children.Add(_accountNav);
 
         }
 
