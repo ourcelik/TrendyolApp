@@ -1,12 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TrendyolApp.View.FavouritePage">
+             x:Class="TrendyolApp.View.FavouritePage"
+             Title="Favoriler"
+             >
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.6*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".5*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width=".5*"/>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Row="1" Grid.Column="2" BackgroundColor="Transparent">
+                <Frame CornerRadius="100" HeightRequest="120">
+                    <Image Source="star.png"/>
+                </Frame>
+            </StackLayout>
+            <StackLayout Grid.Row="2" BackgroundColor="Transparent" Grid.ColumnSpan="5">
+                <Label Text="Favorilerim" HorizontalOptions="Center" FontAttributes="Bold" FontSize="17"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="1" Grid.ColumnSpan="3" TextColor="#9d9d9d" FontSize="12" FontAttributes="Bold" Text="Favorilerimizi görüntüleyebilmek için lütfen giriş yapın.Beğendiğiniz ürünler yeniden satışa çıktığında haberdar olmak için ürünleri favorilerime ekleyebilirsiniz."/>
+                </Grid>
+            </StackLayout>
+            <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,10,0,0" Clicked="RouteLogingPage" Text="GİRİŞ YAP" TextColor="White" CharacterSpacing="1.5" CornerRadius="2" HeightRequest="55" BackgroundColor="#f27a1b"></Button>
+
+        </Grid>
+
     </ContentPage.Content>
 </ContentPage>

@@ -19,7 +19,7 @@
                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                                 <GradientStop Color="#f75d53"
                                               Offset="0.4"/>
-                                
+
                                 <GradientStop Color="#fb6b2b"
                                               Offset="0.7"/>
                                 <GradientStop Color="#ff751c"
@@ -62,7 +62,7 @@
                                             <Label Text="{Binding Facebook}" VerticalOptions="Center"/>
                                         </StackLayout>
                                     </Frame>
-                                    </StackLayout>
+                                </StackLayout>
                                 <StackLayout WidthRequest="150" HeightRequest="80" VerticalOptions="CenterAndExpand">
                                     <Frame HeightRequest="60" Margin="25,10,0,15" Padding="10">
                                         <StackLayout Orientation="Horizontal">
@@ -78,11 +78,11 @@
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="Register"/>
                                     </StackLayout.GestureRecognizers>
-                                    <Label Text="Üye ol" TextColor="#ff663a" FontAttributes="Bold"/>
+                                    <Label Text="Üye ol" TextColor="#ff663a"/>
                                 </StackLayout>
                             </StackLayout>
                         </StackLayout>
-                        
+
                     </Frame>
 
                 </StackLayout>

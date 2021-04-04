@@ -14,12 +14,25 @@
         <StackLayout BackgroundColor="White">
             <Grid>
                 <StackLayout  Padding="0" Margin="0">
-                    <Frame BackgroundColor="#ff663a" HeightRequest="250" HorizontalOptions="FillAndExpand">
+                    <Frame HeightRequest="250" HorizontalOptions="FillAndExpand">
+                        <Frame.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#f75d53"
+                                              Offset="0.4"/>
+
+                                <GradientStop Color="#fb6b2b"
+                                              Offset="0.7"/>
+                                <GradientStop Color="#ff751c"
+                                              Offset="1.0"/>
+
+
+                            </LinearGradientBrush>
+                        </Frame.Background>
                         <StackLayout Padding="80,10">
                             <Image Source="logo.png"/>
-                            
+
                         </StackLayout>
-                       
+
                     </Frame>
                 </StackLayout>
                 <StackLayout Margin="15,120,15,0" >
@@ -51,7 +64,7 @@
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                
+
                             </StackLayout>
                             <StackLayout>
                                 <Label Text="Cinsiyet(Opsiyonel)" FontSize="15"/>
@@ -75,7 +88,7 @@
                                             <Span Text="almak istiyorum."/>
                                         </FormattedString>
                                     </Label.FormattedText>
-                                        
+
                                 </Label>
                             </StackLayout>
                             <Button Margin="0,0,0,0" Text="ÜYE OL" TextColor="White" CharacterSpacing="1.5" CornerRadius="5" HeightRequest="55" BackgroundColor="#f27a1b"></Button>

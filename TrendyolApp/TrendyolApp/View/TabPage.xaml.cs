@@ -14,6 +14,8 @@ namespace TrendyolApp.View
     {
         NavigationBar _accountNav;
         HomeNavigationPage _homeNavigationPage;
+        HomeNavigationPage _favouriteNavigationPage;
+        HomeNavigationPage _cartNavigationPage;
         RegisterPage _registerPage;
         AccountPage _accountPage;
         CartPage _cartPage;
@@ -45,18 +47,28 @@ namespace TrendyolApp.View
             _cartPage = new CartPage();
             _cartPage.IconImageSource = "cart.png";
             _cartPage.Title = "Sepetim";
+            _cartNavigationPage = new HomeNavigationPage(_cartPage);
+            _cartNavigationPage.Title = "Sepetim";
+            _cartNavigationPage.IconImageSource = "cart.png";
+            _cartNavigationPage.BarTextColor = Color.Black;
             _favouritePage = new FavouritePage();
             _favouritePage.Title = "Favoriler";
             _favouritePage.IconImageSource = "heart.png";
+            _favouriteNavigationPage = new HomeNavigationPage(_favouritePage);
+            _favouriteNavigationPage.BarBackgroundColor = Color.White;
+            _favouriteNavigationPage.BarTextColor = Color.Black;
+            _favouriteNavigationPage.Title = "Favoriler";
+            _favouriteNavigationPage.IconImageSource = "heart.png";
             _homePage = new HomePage();
             _homeNavigationPage = new HomeNavigationPage(_homePage);
+
             _homeNavigationPage.Title = "Anasayfa";
             _homeNavigationPage.IconImageSource = "home.png";
 
             this.Children.Add(_homeNavigationPage);
             this.Children.Add(_categoryPage);
-            this.Children.Add(_favouritePage);
-            this.Children.Add(_cartPage);
+            this.Children.Add(_favouriteNavigationPage);
+            this.Children.Add(_cartNavigationPage);
             this.Children.Add(_accountNav);
 
         }

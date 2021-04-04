@@ -16,5 +16,10 @@ namespace TrendyolApp.View
         {
             InitializeComponent();
         }
+
+        private void RouteLogingPage(object sender, EventArgs e)
+        {
+            this.Navigation.PushModalAsync(new LoginPage());
+        }
     }
 }
