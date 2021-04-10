@@ -4,12 +4,11 @@
              x:Class="TrendyolApp.View.AccountPage"
              Title="Hesabım">
     <ContentPage.ToolbarItems>
-        
+
         <ToolbarItem IconImageSource="home.png" Clicked="ToolbarItem_Clicked">
-            
+
         </ToolbarItem>
     </ContentPage.ToolbarItems>
-    <Label Text="deee"/>
 
 
 

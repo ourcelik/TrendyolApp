@@ -5,12 +5,14 @@ using System.Text;
 
 namespace TrendyolApp.ViewModels
 {
-    public class LoginPageViewModel: INotifyPropertyChanged
+    public class LoginPageViewModel : INotifyPropertyChanged
     {
-        string facebook = "Facebook \nile bağlan";
-        public string Facebook { get { return facebook; } 
-            }
-        string google = "Google \nile bağlan";
+        readonly string facebook = "Facebook \nile bağlan";
+        public string Facebook
+        {
+            get { return facebook; }
+        }
+        readonly string google = "Google \nile bağlan";
         public string Google
         {
             get { return google; }

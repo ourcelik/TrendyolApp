@@ -2,7 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TrendyolApp.View.HomePage"
+             xmlns:tab="clr-namespace:Xam.Plugin.TabView;assembly=Xam.Plugin.TabView"
+             xmlns:viewModels="clr-namespace:TrendyolApp.ViewModels"
              >
+    <ContentPage.BindingContext>
+        <viewModels:HomePageViewModel></viewModels:HomePageViewModel>
+    </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="notification.png" Clicked="ToolbarItem_Clicked">
 
@@ -14,33 +19,166 @@
             <SearchBar  Placeholder="Marka, ürün veya kategori ara" VerticalOptions="Center">
             </SearchBar>
         </Frame>
-
     </NavigationPage.TitleView>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.3*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <StackLayout Grid.Row="0" BackgroundColor="White">
-            <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
-                <StackLayout Orientation="Horizontal">
-                    <Button Text="Kadın" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
-                    <Button Text="Erkek" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
-                    <Button Text="Ev-Yaşam" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
-                    <Button Text="Süpermarket" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
-                    <Button Text="Çocuk" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
-                    <Button Text="Kozmetik" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
-                    <Button Text="Ayakkabı-Çanta" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
-                    <Button Text="Spor-Outdoor" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
-                    <Button Text="Elektronik" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
-                    <Button Text="Saat-Aksesuar" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
-                    <Button Text="Trendyolmilla" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
-                    <Button Text="Luxury-Designer" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
-                    <Button Text="Moda" TextColor="#9a9a9a" BackgroundColor="Transparent" FontSize="13"/>
-                </StackLayout>
-            </ScrollView>
-        </StackLayout>
-    </Grid>
+    <ContentPage.Content>
+        <tab:TabViewControl HeaderSelectionUnderlineThickness="3" TabHeaderSpacing="15" BackgroundColor="Transparent"  HeaderSelectionUnderlineColor="Orange" HeaderBackgroundColor="White" HeaderTabTextColor="Black">
+            <tab:TabViewControl.ItemSource>
+                <tab:TabItem HeaderText="Kadın">
+                    <ScrollView VerticalScrollBarVisibility="Never">
+                        <StackLayout BackgroundColor="Transparent">
+                            <!--#region CarouselAd-->
+                            <StackLayout BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="Start" WidthRequest="390" HeightRequest="110" Margin="0,10,0,0">
+                                <Frame Padding="0" CornerRadius="10">
+                                    <Grid>
+
+                                        <CarouselView HeightRequest="100"
+                                                  IndicatorView="carouselAdIndicator"
+                        ItemsSource="{Binding Ads}"
+                        >
+                                            <CarouselView.ItemTemplate>
+                                                <DataTemplate>
+
+                                                    <ImageButton BackgroundColor="Pink"  Source="{Binding Url}" VerticalOptions="FillAndExpand" Aspect="Fill"/>
+
+                                                </DataTemplate>
+                                            </CarouselView.ItemTemplate>
+
+                                        </CarouselView>
+
+                                        <IndicatorView x:Name="carouselAdIndicator"
+                                                   BackgroundColor="Black" Opacity="0.7"
+                                                   HeightRequest="15"
+                                                   MaximumVisible="7"
+                                                   VerticalOptions="End"
+                                                   HorizontalOptions="Center"
+                                                   Margin="0,0,0,10"
+                                                   IndicatorColor="LightGray"
+                                                   SelectedIndicatorColor="White"
+                       />
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                            <!--#endregion-->
+                            <!--#region triple-->
+                            <Label Text="Yeni Hizmetleri Keşfet!" Margin="10,0,0,0" FontSize="17" FontAttributes="Bold" TextColor="Black"/>
+                            <FlexLayout JustifyContent="SpaceAround" AlignContent="Center" HeightRequest="130" BackgroundColor="Transparent" VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+                                <StackLayout Margin="0,5" BackgroundColor="Transparent" WidthRequest="100">
+                                    <Frame Padding="0" BackgroundColor="White"  CornerRadius="15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <ImageButton Source="star.png" BackgroundColor="Transparent" Aspect="Fill"/>
+                                    </Frame>
+                                    <Label Text="Hızlı Market" FontSize="15" CharacterSpacing="0.2" FontAttributes="Bold" VerticalOptions="End" HorizontalOptions="Center"/>
+                                </StackLayout>
+                                <StackLayout Margin="0,5" BackgroundColor="Transparent" WidthRequest="100">
+                                    <Frame BackgroundColor="White"  Padding="0" CornerRadius="15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <ImageButton Source="star.png" BackgroundColor="Transparent" />
+                                    </Frame>
+                                    <Label Text="Yemek" FontSize="15" CharacterSpacing="0.2" FontAttributes="Bold" VerticalOptions="End" HorizontalOptions="Center"/>
+
+                                </StackLayout>
+                                <StackLayout Margin="0,5" BackgroundColor="Transparent" WidthRequest="100">
+                                    <Frame BackgroundColor="White" Padding="0" CornerRadius="15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <ImageButton Source="star.png" BackgroundColor="Transparent"/>
+                                    </Frame>
+                                    <Label Text="Al,Sat,Kazan" FontSize="15" CharacterSpacing="0.2" FontAttributes="Bold" VerticalOptions="End" HorizontalOptions="Center"/>
+                                </StackLayout>
+
+                            </FlexLayout>
+                            <!--#endregion-->
+                            <!--#region BigAd-->
+                            <StackLayout BackgroundColor="Transparent" HeightRequest="220" VerticalOptions="Start">
+                                <Frame HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Padding="0">
+                                    <Image Source="https://cdn.dsmcdn.com/ty101/campaign/banners/original/562780/a72cd9778e_3_new.jpg" BackgroundColor="Black" Aspect="Fill"/>
+                                </Frame>
+                            </StackLayout>
+                            <!--#endregion-->
+                            <!--#region BigAd-->
+                            <StackLayout BackgroundColor="Transparent" HeightRequest="220" VerticalOptions="Start">
+                                <Frame HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Padding="0">
+                                    <Image Source="https://cdn.dsmcdn.com/ty101/pimWidgetApi/1329450_webBig_20210407132956_mango110321webc2.jpg" BackgroundColor="Black" Aspect="Fill"/>
+                                </Frame>
+                            </StackLayout>
+                            <!--#endregion-->
+                            <!--#region BigAd-->
+                            <StackLayout BackgroundColor="Transparent" HeightRequest="220" VerticalOptions="Start">
+                                <Frame HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Padding="0">
+                                    <Image Source="https://cdn.dsmcdn.com/ty103/campaign/banners/original/563363/4fa4438db0_3_new.jpg" BackgroundColor="Black" Aspect="Fill"/>
+                                </Frame>
+                            </StackLayout>
+                            <StackLayout BackgroundColor="Transparent" HeightRequest="220" VerticalOptions="Start">
+                                <Frame HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Padding="0">
+                                    <Image Source="https://cdn.dsmcdn.com/ty100/campaign/banners/original/560452/0d83b152c4_1_new.jpg" BackgroundColor="Black" Aspect="Fill"/>
+                                </Frame>
+                            </StackLayout>
+                            <!--#endregion-->
+
+                            <StackLayout Orientation="Vertical">
+                                <Grid>
+                                    <Label Text="Size Özel Ürünler" Margin="10,0,0,0" FontSize="Body" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Start"/>
+                                    <StackLayout HorizontalOptions="End" VerticalOptions="End">
+                                        <Label Text="Tüm Ürünler" Margin="0,0,15,0" TextColor="Orange"/>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </Grid>
+                            </StackLayout>
+                            <StackLayout VerticalOptions="Start" BackgroundColor="Transparent" HorizontalOptions="Start" WidthRequest="150" HeightRequest="260" Margin="0,0,0,50">
+                                <Frame VerticalOptions="FillAndExpand" Padding="0" CornerRadius="15">
+                                    <Grid>
+                                        <ImageButton Source="Ad1.png" VerticalOptions="StartAndExpand" HeightRequest="190" Aspect="AspectFill"/>
+                                        <StackLayout BackgroundColor="Transparent" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="30" WidthRequest="30" Margin="14">
+                                            <Frame VerticalOptions="FillAndExpand" HeightRequest="15" HorizontalOptions="FillAndExpand" Padding="0" CornerRadius="15">
+                                                <ImageButton Source="star.png"/>
+                                            </Frame>
+                                        </StackLayout>
+                                        <StackLayout VerticalOptions="EndAndExpand">
+                                            <Label Margin="5,0,0,0">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Arifoğlu " FontAttributes="Bold"/>
+                                                        <Span Text="Sarı Kantaron Yağı 50ml"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label Text="17.75 TL" TextColor="Orange" FontAttributes="Bold" Margin="10,0,0,2"/>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
+
+
+
+
+
+                    </ScrollView>
+                </tab:TabItem>
+                <tab:TabItem HeaderText="Erkek" HeaderTextColor="White">
+                    <Image BackgroundColor="Black"/>
+                </tab:TabItem>
+                <tab:TabItem HeaderText="Ev &amp; Yaşam">
+                    <Image BackgroundColor="BlanchedAlmond"/>
+
+                </tab:TabItem>
+                <tab:TabItem HeaderText="SüperMarket">
+                    <Image BackgroundColor="Blue"/>
+
+                </tab:TabItem>
+                <tab:TabItem HeaderText="Çocuk">
+                    <Image BackgroundColor="Brown"/>
+
+                </tab:TabItem>
+                <tab:TabItem HeaderText="Kozmetik">
+                    <Image BackgroundColor="DarkGreen"/>
+
+                </tab:TabItem>
+                <tab:TabItem HeaderText="Ayakkabı &amp; Çanta">
+                    <Image BackgroundColor="DarkGreen"/>
+
+                </tab:TabItem>
+            </tab:TabViewControl.ItemSource>
+        </tab:TabViewControl>
+
+    </ContentPage.Content>
+
 </ContentPage>
