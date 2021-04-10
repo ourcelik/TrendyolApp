@@ -51,6 +51,7 @@ namespace TrendyolApp.View
             _cartNavigationPage.Title = "Sepetim";
             _cartNavigationPage.IconImageSource = "cart.png";
             _cartNavigationPage.BarTextColor = Color.Black;
+            _cartNavigationPage.BarBackgroundColor = Color.FromHex("#ffffff");
             _favouritePage = new FavouritePage();
             _favouritePage.Title = "Favoriler";
             _favouritePage.IconImageSource = "heart.png";

@@ -7,7 +7,7 @@ using TrendyolApp.Models;
 
 namespace TrendyolApp.ViewModels
 {
-    class HomePageViewModel : INotifyPropertyChanged
+    public class HomePageViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<CarouselAdModel> Ads
         {

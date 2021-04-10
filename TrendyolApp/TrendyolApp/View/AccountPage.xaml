@@ -9,6 +9,44 @@
 
         </ToolbarItem>
     </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.6*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".5*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width=".5*"/>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Row="1" Grid.Column="2" BackgroundColor="Transparent">
+                <Frame CornerRadius="100" HeightRequest="120">
+                    <Image Source="account.png"/>
+                </Frame>
+            </StackLayout>
+            <StackLayout Grid.Row="2" BackgroundColor="Transparent" Grid.ColumnSpan="5">
+                <Label Text="Hesabım" HorizontalOptions="Center" FontAttributes="Bold" FontSize="17"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="1" Grid.ColumnSpan="3" TextColor="#9d9d9d" FontSize="12" FontAttributes="Bold" Text="Hesabınızı görüntüleyebilmek için lütfen giriş yapın.Siparişlerinizi ve Elite üyelik durumunuzu hesabımdan takip etebilirsiniz"/>
+                </Grid>
+            </StackLayout>
+            <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,10,0,0" Text="GİRİŞ YAP" TextColor="White" CharacterSpacing="1.5" CornerRadius="2" HeightRequest="55" BackgroundColor="#f27a1b"></Button>
+
+        </Grid>
+    </ContentPage.Content>
 
 
 
