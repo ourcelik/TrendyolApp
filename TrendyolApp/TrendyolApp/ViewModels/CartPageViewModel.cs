@@ -4,95 +4,30 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 using TrendyolApp.Models;
+using System.Linq;
+using TrendyolApp.Data;
+using TrendyolApp.Extensions;
 
 namespace TrendyolApp.ViewModels
 {
     public class CartPageViewModel : INotifyPropertyChanged
     {
         ObservableCollection<ProductModel> products;
+
         public ObservableCollection<ProductModel> Products { get { return products; } }
         public CartPageViewModel()
         {
+            GetShuffleProducts();
 
-            products = new ObservableCollection<ProductModel>
-            {
-                new ProductModel{
-                    ProductName = "Hummel hml",
-                    Description = "Güzel bir ayakkabı dosta gider",
-                    Category = new Category(){ CategoryId=1,CategoryName = "ayakkabı"},
-                    Brand = "Hummel",
-                    Photos = new List<PhotoModel>(){
-                        new PhotoModel{ Id =0,Url="https://cdn.dsmcdn.com/mnresize/415/622/ty79/product/media/images/20210304/14/68692988/70765176/1/1_org_zoom.jpg" },
-                        new PhotoModel{ Id =1,Url="https://cdn.dsmcdn.com/mnresize/415/622/ty77/product/media/images/20210304/14/68692988/70765176/2/2_org_zoom.jpg" },
-                    },
-                    Price = 999,
-                    ProductInfo = "Info aga",
-                    Seller = "Babamm",
-                    ProductId = 0,
-                    TopPhoto = new PhotoModel(){Url = "https://cdn.dsmcdn.com/mnresize/415/622/ty77/product/media/images/20210304/14/68692988/70765176/2/2_org_zoom.jpg" },
-                },
-                new ProductModel{
-                    ProductName = "Hummel hml",
-                    Description = "Güzel bir ayakkabı dosta gider",
-                    Category = new Category(){ CategoryId=1,CategoryName = "ayakkabı"},
-                    Brand = "Hummel",
-                    Photos = new List<PhotoModel>(){
-                        new PhotoModel{ Id =0,Url="https://cdn.dsmcdn.com/mnresize/415/622/ty79/product/media/images/20210304/14/68692988/70765176/1/1_org_zoom.jpg" },
-                        new PhotoModel{ Id =1,Url="https://cdn.dsmcdn.com/mnresize/415/622/ty77/product/media/images/20210304/14/68692988/70765176/2/2_org_zoom.jpg" },
-                    },
-                    Price = 999,
-                    ProductInfo = "Info aga",
-                    Seller = "Babamm",
-                    ProductId = 0,
-                    TopPhoto = new PhotoModel(){Url = "https://cdn.dsmcdn.com/mnresize/415/622/ty77/product/media/images/20210304/14/68692988/70765176/2/2_org_zoom.jpg" },
-                },
-                new ProductModel{
-                    ProductName = "Hummel hml",
-                    Description = "Güzel bir ayakkabı dosta gider",
-                    Category = new Category(){ CategoryId=1,CategoryName = "ayakkabı"},
-                    Brand = "Hummel",
-                    Photos = new List<PhotoModel>(){
-                        new PhotoModel{ Id =0,Url="https://cdn.dsmcdn.com/mnresize/415/622/ty79/product/media/images/20210304/14/68692988/70765176/1/1_org_zoom.jpg" },
-                        new PhotoModel{ Id =1,Url="https://cdn.dsmcdn.com/mnresize/415/622/ty77/product/media/images/20210304/14/68692988/70765176/2/2_org_zoom.jpg" },
-                    },
-                    Price = 999,
-                    ProductInfo = "Info aga",
-                    Seller = "Babamm",
-                    ProductId = 0,
-                    TopPhoto = new PhotoModel(){Url = "https://cdn.dsmcdn.com/mnresize/415/622/ty77/product/media/images/20210304/14/68692988/70765176/2/2_org_zoom.jpg" },
-                },
-                new ProductModel{
-                    ProductName = "Hummel hml",
-                    Description = "Güzel bir ayakkabı dosta gider",
-                    Category = new Category(){ CategoryId=1,CategoryName = "ayakkabı"},
-                    Brand = "Hummel",
-                    Photos = new List<PhotoModel>(){
-                        new PhotoModel{ Id =0,Url="https://cdn.dsmcdn.com/mnresize/415/622/ty79/product/media/images/20210304/14/68692988/70765176/1/1_org_zoom.jpg" },
-                        new PhotoModel{ Id =1,Url="https://cdn.dsmcdn.com/mnresize/415/622/ty77/product/media/images/20210304/14/68692988/70765176/2/2_org_zoom.jpg" },
-                    },
-                    Price = 999,
-                    ProductInfo = "Info aga",
-                    Seller = "Babamm",
-                    ProductId = 0,
-                    TopPhoto = new PhotoModel(){Url = "https://cdn.dsmcdn.com/mnresize/415/622/ty77/product/media/images/20210304/14/68692988/70765176/2/2_org_zoom.jpg" },
-                },
-                new ProductModel{
-                    ProductName = "Hummel hml",
-                    Description = "Güzel bir ayakkabı dosta gider",
-                    Category = new Category(){ CategoryId=1,CategoryName = "ayakkabı"},
-                    Brand = "Hummel",
-                    Photos = new List<PhotoModel>(){
-                        new PhotoModel{ Id =0,Url="https://cdn.dsmcdn.com/mnresize/415/622/ty79/product/media/images/20210304/14/68692988/70765176/1/1_org_zoom.jpg" },
-                        new PhotoModel{ Id =1,Url="https://cdn.dsmcdn.com/mnresize/415/622/ty77/product/media/images/20210304/14/68692988/70765176/2/2_org_zoom.jpg" },
-                    },
-                    Price = 999,
-                    ProductInfo = "Info aga",
-                    Seller = "Babamm",
-                    ProductId = 0,
-                    TopPhoto = new PhotoModel(){Url = "https://cdn.dsmcdn.com/mnresize/415/622/ty77/product/media/images/20210304/14/68692988/70765176/2/2_org_zoom.jpg" },
-                },
-            };
         }
+
+        private void GetShuffleProducts()
+        {
+            var data = ProductData.GetProducts();
+            data.Shuffle();
+            products = data;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

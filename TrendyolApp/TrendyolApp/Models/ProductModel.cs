@@ -23,7 +23,7 @@ namespace TrendyolApp.Models
         public Category Category { get; set; }
         public PhotoModel TopPhoto { get; set; }
         public DateTime DeliveryDate { get; set; }
-        public Currency Currency { get; set; } 
+        public Currency Currency { get; set; }
 
     }
 }
