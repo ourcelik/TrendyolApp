@@ -10,7 +10,7 @@ using TrendyolApp.Extensions;
 
 namespace TrendyolApp.ViewModels
 {
-    public class CartPageViewModel : INotifyPropertyChanged
+    public class CartPageViewModel : BaseViewModel
     {
         ObservableCollection<ProductModel> products;
 
@@ -28,6 +28,5 @@ namespace TrendyolApp.ViewModels
             products = data;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

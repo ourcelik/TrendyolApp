@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrendyolApp.View.Login.LoginAccountPage">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Button Clicked="LogOutClick" Margin="0,10,0,0" Text="Çıkış Yap" TextColor="White" CharacterSpacing="1.5" CornerRadius="2" HeightRequest="55" BackgroundColor="#f27a1b"></Button>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -10,7 +10,7 @@ using TrendyolApp.Extensions;
 
 namespace TrendyolApp.ViewModels
 {
-    public class HomePageViewModel : INotifyPropertyChanged
+    public class HomePageViewModel : BaseViewModel
     {
         public ObservableCollection<CarouselAdModel> Ads
         {
@@ -39,7 +39,6 @@ namespace TrendyolApp.ViewModels
         }
         readonly ObservableCollection<CarouselAdModel> ads;
 
-        public event PropertyChangedEventHandler PropertyChanged;
         public void GetRandomProducts()
         {
             var data = ProductData.GetProducts();
