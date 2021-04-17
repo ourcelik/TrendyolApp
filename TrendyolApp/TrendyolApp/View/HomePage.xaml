@@ -132,7 +132,10 @@
                                 </StackLayout>
                                 <StackLayout HeightRequest="260" Margin="10,10,0,10" BackgroundColor="Transparent">
                                     <CollectionView BackgroundColor="Transparent"
-                                            ItemsSource="{Binding RandomProducts}">
+                                                    x:Name="ProductCollection"
+                                            ItemsSource="{Binding RandomProducts}"
+                                                    
+                                                    >
                                         <CollectionView.ItemsLayout>
                                             <LinearItemsLayout
                                                     Orientation="Horizontal"/>
@@ -140,13 +143,18 @@
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackLayout Orientation="Horizontal" Margin="0,0,15,0" VerticalOptions="StartAndExpand">
+                                                    <StackLayout.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="StackLayoutProductClick" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                                    </StackLayout.GestureRecognizers>
                                                     <StackLayout VerticalOptions="Start" BackgroundColor="Transparent" WidthRequest="150">
+
                                                         <Frame VerticalOptions="FillAndExpand"  Padding="0" CornerRadius="15" HeightRequest="250">
                                                             <Grid>
-                                                                <ImageButton Source="{Binding TopPhoto.Url}" VerticalOptions="StartAndExpand" HeightRequest="170" Aspect="AspectFill"/>
+
+                                                                <ImageButton Source="{Binding TopPhoto.Url}" CommandParameter="{Binding .}" Clicked="ImageProductClick" VerticalOptions="StartAndExpand" HeightRequest="170" Aspect="AspectFill"/>
                                                                 <StackLayout BackgroundColor="Transparent" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="30" WidthRequest="30" Margin="14">
                                                                     <Frame VerticalOptions="FillAndExpand" HeightRequest="15" HorizontalOptions="FillAndExpand" Padding="0" CornerRadius="15">
-                                                                        <ImageButton Source="star.png"/>
+                                                                        <Image Source="star.png"/>
                                                                     </Frame>
                                                                 </StackLayout>
                                                                 <StackLayout VerticalOptions="EndAndExpand">

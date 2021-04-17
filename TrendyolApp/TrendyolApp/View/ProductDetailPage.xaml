@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrendyolApp.View.ProductDetailPage"
+             NavigationPage.HasNavigationBar="True"
+             >
+    <NavigationPage.TitleView>
+        <StackLayout BackgroundColor="Transparent" HorizontalOptions="Start">
+            <Frame VerticalOptions="FillAndExpand" WidthRequest="30" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" Padding="0">
+                <ImageButton Clicked="ClickBackButton" Source="back.png" BackgroundColor="Transparent" Aspect="AspectFill" Opacity="1"/>
+            </Frame>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="share.png"/>
+        <ToolbarItem IconImageSource="heart2.png"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout x:Name="ProductArea">
+
+            <ScrollView VerticalOptions="StartAndExpand" BackgroundColor="Transparent" VerticalScrollBarVisibility="Never">
+                <StackLayout>
+                    <Grid>
+                        <CarouselView
+                        
+                        IndicatorView="carouselIndicator"
+                        HeightRequest="430"
+                        HorizontalOptions="StartAndExpand"
+                        BackgroundColor="White"
+                        ItemsSource="{Binding Photos}"
+                        >
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Url}"/>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+
+                        </CarouselView>
+                        <IndicatorView x:Name="carouselIndicator"
+                                                   BackgroundColor="Black" Opacity="0.7"
+                                                   HeightRequest="15"
+                                                   MaximumVisible="7"
+                                                   VerticalOptions="End"
+                                                   HorizontalOptions="Center"
+                                                   Margin="0,0,0,10"
+                                                   IndicatorColor="LightGray"
+                                                   SelectedIndicatorColor="White"/>
+                    </Grid>
+                    <StackLayout VerticalOptions="StartAndExpand" BackgroundColor="#f5f5f5" Margin="0">
+                        <Frame VerticalOptions="FillAndExpand" Padding="0">
+                            <StackLayout WidthRequest="250" BackgroundColor="Transparent">
+                                <Label Text="{Binding Brand}" FontAttributes="Bold" Margin="15,15,15,0" TextColor="#3b3b3b" FontSize="18"/>
+                                <Label Text="{Binding Description}" TextColor="#9a9a9a" Margin="15,0,0,15" FontAttributes="Bold"/>
+                                <BoxView BackgroundColor="Gray" HeightRequest="0.2" Opacity="0.5"/>
+                                <Label Margin="15">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Satıcı : " FontAttributes="Bold" TextColor="#9b9b9b"/>
+                                            <Span Text="{Binding Seller}" TextColor="#4b90e2" FontAttributes="Bold"/>
+
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <BoxView BackgroundColor="Gray" HeightRequest="0.2" Opacity="0.5"/>
+                                <Label Margin="15">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Tahmini Teslim : " FontAttributes="Bold" TextColor="#9b9b9b"/>
+                                            <Span Text="{Binding DeliveryDate.DayOfWeek}" TextColor="#3b3b3b" FontAttributes="Bold"/>
+
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                            </StackLayout>
+                        </Frame>
+                        <Frame VerticalOptions="FillAndExpand" Padding="0">
+                            <StackLayout WidthRequest="250" BackgroundColor="Transparent">
+                                <Label Text="Ürün Kampanyaları" FontAttributes="Bold" Margin="15,15,15,0" TextColor="#3b3b3b" FontSize="18"/>
+                                <BoxView BackgroundColor="Gray" HeightRequest="0.2" Opacity="0.5"/>
+                                <Label Margin="25,10,0,15">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="150 TL ve Üzeri Kargo Bedava" FontAttributes="Bold"/>
+
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+
+                </StackLayout>
+            </ScrollView>
+            <StackLayout BackgroundColor="Transparent">
+                <StackLayout MinimumHeightRequest="140" HeightRequest="70" BackgroundColor="Transparent" VerticalOptions="End">
+                    <Frame VerticalOptions="FillAndExpand" HasShadow="True" BorderColor="LightGray" BackgroundColor="#ffffff" CornerRadius="0" Padding="0">
+                        <StackLayout Orientation="Horizontal" >
+                            <Grid HorizontalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".1*"/>
+                                    <ColumnDefinition Width=".2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.Column="1" Orientation="Horizontal" BackgroundColor="Transparent" >
+                                    <Label Text="{Binding Price}" VerticalOptions="Center" HorizontalOptions="Start" TextColor="DarkOrange" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Currency.CurrencyType}" VerticalOptions="Center" HorizontalOptions="Start" TextColor="DarkOrange" FontAttributes="Bold"/>
+                                </StackLayout>
+                                <Button Grid.Column="2" Margin="0,8,15,8" Text="Sepete Ekle" TextTransform="None" FontSize="17" FontAttributes="Bold" TextColor="White" CharacterSpacing="1" CornerRadius="5" HeightRequest="55" BackgroundColor="#f27a1b"></Button>
+
+
+
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+
+</ContentPage>
