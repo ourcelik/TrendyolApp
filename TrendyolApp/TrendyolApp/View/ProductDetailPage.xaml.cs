@@ -18,12 +18,16 @@ namespace TrendyolApp.View
         {
             InitializeComponent();
             _product = (ProductModel)product;
-            ProductArea.BindingContext = _product;
+            ProductArea.BindingContext = _product; 
         }
 
         private void ClickBackButton(object sender, EventArgs e)
         {
             Navigation.PopModalAsync(false);
+        }
+        private void ClickCartButton(object sender, EventArgs e)
+        {
+            MessagingCenter.Send<ProductDetailPage, bool>(this, "MakeVisible", true);
         }
     }
 }

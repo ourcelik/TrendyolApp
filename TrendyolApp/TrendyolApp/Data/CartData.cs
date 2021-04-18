@@ -24,7 +24,7 @@ namespace TrendyolApp.Data
         public static void AddProduct(ProductModel product)
         {
             var data = Products.Where(c => c.Product.ProductId == product.ProductId).SingleOrDefault();
-            if (data != null)
+            if (!AlreadyExists(data))
             {
                 data.Count += 1;
                 return;
@@ -35,6 +35,16 @@ namespace TrendyolApp.Data
             });
 
         }
+        public static bool AlreadyExists(CartModel cartModel)
+        {
+
+            return cartModel != null ? false : true;
+        }
+        public static bool IsNotEmpty()
+        {
+            return Products.Count != 0 ? true : false;
+        }
+
     }
 
 }

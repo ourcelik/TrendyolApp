@@ -15,6 +15,7 @@ namespace TrendyolApp.ViewModels
     {
         ObservableCollection<CartModel> cartProducts;
 
+
         public ObservableCollection<CartModel> CartProducts
         {
             get { return cartProducts; }

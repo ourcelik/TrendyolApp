@@ -20,7 +20,9 @@ namespace TrendyolApp.ViewModels
             }
         }
         ObservableCollection<ProductModel> randomProducts;
+        ObservableCollection<ProductModel> randomProductsMan;
         public ObservableCollection<ProductModel> RandomProducts { get { return randomProducts; } }
+        public ObservableCollection<ProductModel> RandomProductsMan { get { return randomProductsMan; } }
         public HomePageViewModel()
         {
             ads = new ObservableCollection<CarouselAdModel>
@@ -35,18 +37,20 @@ namespace TrendyolApp.ViewModels
 
             };
             randomProducts = new ObservableCollection<ProductModel>();
-            GetRandomProducts();
+            randomProductsMan = new ObservableCollection<ProductModel>();
+            GetRandomProducts(randomProducts);
+            GetRandomProducts(RandomProductsMan);
         }
         readonly ObservableCollection<CarouselAdModel> ads;
 
-        public void GetRandomProducts()
+        public void GetRandomProducts(ObservableCollection<ProductModel> _randomProducts)
         {
             var data = ProductData.GetProducts();
             data.Shuffle();
             var data2 = data.Where(p => p.ProductId > 0 && p.ProductId < 20);
             foreach (var item in data2)
             {
-                randomProducts.Add(item);
+                _randomProducts.Add(item);
             }
 
         }

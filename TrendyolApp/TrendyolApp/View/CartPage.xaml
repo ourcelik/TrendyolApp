@@ -158,6 +158,7 @@
                                                             </Label.FormattedText>
                                                         </Label>
                                                         <Button TextTransform="None" Clicked="VisibilityClick" HeightRequest="40" Margin="100,0,0,0" TextColor="#f27d1f" FontAttributes="Bold" Text="Sepete Ekle" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CartPageViewModel}}, Path=AddProduct}" CommandParameter="{Binding .}"  VerticalOptions="Center" BorderColor="DarkOrange" CornerRadius="10" BackgroundColor="Transparent" BorderWidth="1"/>
+
                                                     </FlexLayout>
                                                 </StackLayout>
 
