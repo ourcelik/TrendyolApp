@@ -10,38 +10,122 @@
     <ContentPage.Content>
         <ScrollView VerticalScrollBarVisibility="Never" BackgroundColor="#f5f5f5">
             <StackLayout>
-                <StackLayout>
-                <StackLayout HorizontalOptions="Center" VerticalOptions="Start" HeightRequest="135" WidthRequest="135" Margin="0,30,0,0" BackgroundColor="Transparent">
-                    <Frame CornerRadius="100" HeightRequest="120" HasShadow="False">
-                        <Image Source="account.png"/>
-                    </Frame>
-                </StackLayout>
-                <StackLayout>
-                    <Label Text="Sepetim" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,20,0,0" FontSize="20" FontAttributes="Bold"/>
-                </StackLayout>
-                <StackLayout>
-                    <Label Text="Sepetinizde ürün bulunmamaktadır" TextColor="#acacac" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,12,0,0" FontAttributes="Bold"/>
-                </StackLayout>
+                <StackLayout x:Name="EmptyList">
+                    <StackLayout  HorizontalOptions="Center" VerticalOptions="Start" HeightRequest="135" WidthRequest="135" Margin="0,30,0,0" BackgroundColor="Transparent">
+                        <Frame CornerRadius="100" HeightRequest="120" HasShadow="False">
+                            <Image Source="account.png"/>
+                        </Frame>
+                    </StackLayout>
+
+
+
+                    <StackLayout>
+                        <Label Text="Sepetim" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,20,0,0" FontSize="20" FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Sepetinizde ürün bulunmamaktadır" TextColor="#acacac" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,12,0,0" FontAttributes="Bold"/>
+                    </StackLayout>
                     <StackLayout HorizontalOptions="Center" WidthRequest="320" Margin="0,0,0,30">
                         <Button  Margin="0,10,0,0" Text="GİRİŞ YAP" TextColor="White" CharacterSpacing="1.5" CornerRadius="2" HeightRequest="50" BackgroundColor="#f27a1b"></Button>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout Margin="10,0,10,0" BackgroundColor="Transparent">
+                <StackLayout x:Name="CartList" IsVisible="False" Margin="10,0,10,0" BackgroundColor="Transparent" VerticalOptions="StartAndExpand">
                     <Frame VerticalOptions="StartAndExpand" CornerRadius="10" Padding="0">
-                        <StackLayout>
-                        <StackLayout Orientation="Vertical" Margin="15">
-                            <Grid>
-                                <Label Text="Çok Satanlar" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Start" />
-                                <StackLayout>
-                                    <Label Text="Tümünü gör >" TextColor="#f38126" HorizontalOptions="End" FontAttributes="Bold" />
-                                </StackLayout>
+                        <StackLayout VerticalOptions="StartAndExpand">
+                            <StackLayout Orientation="Vertical" Margin="15">
+                                <Grid>
+                                    <Label Text="Çok Satanlar" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Start" />
+                                    <StackLayout>
+                                        <Label Text="Tümünü gör >" TextColor="#f38126" HorizontalOptions="End" FontAttributes="Bold" />
+                                    </StackLayout>
 
-                            </Grid>
-                            
-                        </StackLayout>
+                                </Grid>
+
+                            </StackLayout>
                             <BoxView BackgroundColor="Black" HeightRequest="1" Opacity="0.1"></BoxView>
 
-                            <StackLayout BindableLayout.ItemsSource="{Binding Products}" VerticalOptions="StartAndExpand">
+                            <StackLayout BindableLayout.ItemsSource="{Binding CartProducts}" VerticalOptions="StartAndExpand">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+                                            <StackLayout Orientation="Horizontal" BackgroundColor="Transparent" HorizontalOptions="Start" VerticalOptions="StartAndExpand" Margin="10">
+                                                <StackLayout>
+                                                    <Frame HeightRequest="150" MinimumWidthRequest="120" Padding="0" WidthRequest="120" CornerRadius="10" HasShadow="True">
+                                                        <Image BackgroundColor="Black" Source="{Binding Product.TopPhoto.Url}" Aspect="Fill"></Image>
+                                                    </Frame>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Vertical">
+                                                    <Label Margin="5,0,0,0" LineBreakMode="TailTruncation">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding Product.Brand}" FontAttributes="Bold" TextColor="#363636"/>
+                                                                <Span Text=" "/>
+                                                                <Span Text="{Binding Product.Description}" FontAttributes="Bold" TextColor="#a5a5a5"/>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+
+                                                    </Label>
+                                                    <Label Margin="5,0,0,0">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="Tahmini Teslimat:"/>
+                                                                <Span Text="{Binding Product.DeliveryDate.DayOfWeek}"/>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+
+                                                    </Label>
+                                                    <FlexLayout Margin="5,40,0,0" JustifyContent="SpaceBetween" AlignItems="Center">
+                                                        <Label>
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <Span Text="{Binding Count}" TextColor="#f27d1f" FontAttributes="Bold"/>
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                        </Label>
+                                                        <Label>
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <Span Text="{Binding Product.Price}" TextColor="#f27d1f" FontAttributes="Bold"/>
+                                                                    <Span Text=" "/>
+                                                                    <Span Text="{Binding Product.Currency.CurrencyType}" TextColor="#f27d1f" FontAttributes="Bold"/>
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                        </Label>
+
+                                                    </FlexLayout>
+                                                </StackLayout>
+
+
+                                            </StackLayout>
+                                            <BoxView Margin="10,0,10,0" BackgroundColor="Black" HeightRequest="1" Opacity="0.1"></BoxView>
+
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+
+                        </StackLayout>
+
+                    </Frame>
+                </StackLayout>
+
+
+                <StackLayout Margin="10,0,10,0" BackgroundColor="Transparent" VerticalOptions="StartAndExpand">
+                    <Frame VerticalOptions="StartAndExpand" CornerRadius="10" Padding="0">
+                        <StackLayout VerticalOptions="StartAndExpand">
+                            <StackLayout Orientation="Vertical" Margin="15">
+                                <Grid>
+                                    <Label Text="Çok Satanlar" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Start" />
+                                    <StackLayout>
+                                        <Label Text="Tümünü gör >" TextColor="#f38126" HorizontalOptions="End" FontAttributes="Bold" />
+                                    </StackLayout>
+
+                                </Grid>
+
+                            </StackLayout>
+                            <BoxView BackgroundColor="Black" HeightRequest="1" Opacity="0.1"></BoxView>
+
+                            <StackLayout BindableLayout.ItemsSource="{Binding RandomProducts}" VerticalOptions="StartAndExpand">
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
                                         <StackLayout>
@@ -61,7 +145,7 @@
                                                                 <Span Text="{Binding DeliveryDate.DayOfWeek}"/>
                                                             </FormattedString>
                                                         </Label.FormattedText>
-                                                            
+
                                                     </Label>
                                                     <FlexLayout Margin="5,40,0,0" JustifyContent="SpaceBetween" AlignItems="Center">
                                                         <Label>
@@ -73,11 +157,11 @@
                                                                 </FormattedString>
                                                             </Label.FormattedText>
                                                         </Label>
-                                                        <Button TextTransform="None" HeightRequest="40" Margin="100,0,0,0" TextColor="#f27d1f" FontAttributes="Bold" Text="Sepete Ekle"  VerticalOptions="Center" BorderColor="DarkOrange" CornerRadius="10" BackgroundColor="Transparent" BorderWidth="1"/>
+                                                        <Button TextTransform="None" Clicked="VisibilityClick" HeightRequest="40" Margin="100,0,0,0" TextColor="#f27d1f" FontAttributes="Bold" Text="Sepete Ekle" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CartPageViewModel}}, Path=AddProduct}" CommandParameter="{Binding .}"  VerticalOptions="Center" BorderColor="DarkOrange" CornerRadius="10" BackgroundColor="Transparent" BorderWidth="1"/>
                                                     </FlexLayout>
                                                 </StackLayout>
-                                                
-                                                
+
+
                                             </StackLayout>
                                             <BoxView Margin="10,0,10,0" BackgroundColor="Black" HeightRequest="1" Opacity="0.1"></BoxView>
 
@@ -85,7 +169,7 @@
                                     </DataTemplate>
                                 </BindableLayout.ItemTemplate>
                             </StackLayout>
-                            
+
                         </StackLayout>
 
                     </Frame>

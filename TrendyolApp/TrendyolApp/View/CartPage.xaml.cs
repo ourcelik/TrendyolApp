@@ -16,5 +16,10 @@ namespace TrendyolApp.View
         {
             InitializeComponent();
         }
+        private void VisibilityClick(object sender, EventArgs e)
+        {
+            EmptyList.IsVisible = false;
+            CartList.IsVisible = true;
+        }
     }
 }
