@@ -1,4 +1,6 @@
-﻿using Entities.Concrete.Entities;
+﻿using DataAccess.Concrete;
+using Entities.Concrete.Entities;
+using HotChocolate;
 using HotChocolate.Types;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,18 @@ namespace TrendyolAppGraphQLBackend.GraphQL.Categories
             descriptor
                 .Field(c => c.CategoryName)
                 .Description("Kategori ismi");
+            descriptor
+                .Field(c => c.Products)
+                .ResolveWith<Resolvers>(r => r.GetProducts(default!, default!))
+                .UseDbContext<TrendyolAppDbContext>()
+                .Description("Kategoriye Ait Ürünler");
+        }
+        private class Resolvers
+        {
+            public IQueryable<Product> GetProducts(Category category, [ScopedService] TrendyolAppDbContext context)
+            {
+                return context.Products.Where(p => p.CategoryId == category.Id);
+            }
         }
     }
 }

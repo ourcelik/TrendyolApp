@@ -16,6 +16,11 @@ using System.Threading.Tasks;
 using TrendyolAppGraphQLBackend.GraphQL;
 using GraphQL.Server.Ui.Voyager;
 using TrendyolAppGraphQLBackend.GraphQL.Categories;
+using TrendyolAppGraphQLBackend.GraphQL.CarouselAds;
+using TrendyolAppGraphQLBackend.GraphQL.Carts;
+using TrendyolAppGraphQLBackend.GraphQL.Currencies;
+using TrendyolAppGraphQLBackend.GraphQL.Photos;
+using TrendyolAppGraphQLBackend.GraphQL.Products;
 
 namespace TrendyolAppGraphQLBackend
 {
@@ -37,7 +42,17 @@ namespace TrendyolAppGraphQLBackend
             services.AddControllers();
             services.AddGraphQLServer()
                 .AddQueryType<Query>()
-                .AddType<CategoryType>();
+                .AddMutationType<Mutation>()
+                .AddSubscriptionType<Subscription>()
+                .AddType<CategoryType>()
+                .AddType<CarouselAdType>()
+                .AddType<CartType>()
+                .AddType<CurrencyType>()
+                .AddType<PhotoType>()
+                .AddType<ProductType>()
+                .AddFiltering()
+                .AddSorting()
+                .AddInMemorySubscriptions();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,9 +61,10 @@ namespace TrendyolAppGraphQLBackend
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-              
+
             }
 
+            app.UseWebSockets();
             app.UseHttpsRedirection();
 
             app.UseRouting();
