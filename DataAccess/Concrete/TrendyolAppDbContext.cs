@@ -15,7 +15,14 @@ namespace DataAccess.Concrete
 
         }
 
+
         public DbSet<Category> Categories { get; set; }
+        public DbSet<CarouselAd> CarouselAds { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Photo> Photos { get; set; }
+
 
     }
 }
