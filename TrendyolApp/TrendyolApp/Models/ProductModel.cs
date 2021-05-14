@@ -21,6 +21,8 @@ namespace TrendyolApp.Models
         public List<CommentModel> Comments { get; set; }
         public decimal Price { get; set; }
         public Category Category { get; set; }
+        public SubCategory SubCategory { get; set; }
+        public SubSubCategory SubSubCategory { get; set; }
         public PhotoModel TopPhoto { get; set; }
         public DateTime DeliveryDate { get; set; }
         public Currency Currency { get; set; }
