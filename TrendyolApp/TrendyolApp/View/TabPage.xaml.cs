@@ -18,6 +18,7 @@ namespace TrendyolApp.View
         HomeNavigationPage _homeNavigationPage;
         HomeNavigationPage _favouriteNavigationPage;
         HomeNavigationPage _cartNavigationPage;
+        HomeNavigationPage _categoryNavigationPage;
         ContentPage _accountPage;
         ContentPage _cartPage;
         ContentPage _favouritePage;
@@ -33,7 +34,7 @@ namespace TrendyolApp.View
         }
         public void AddPages()
         {
-            if (!Preferences.Get("Registered",false))
+            if (!Preferences.Get("Registered", false))
             {
                 _loginPage = new LoginPage();
                 _accountPage = new AccountPage();
@@ -48,17 +49,18 @@ namespace TrendyolApp.View
                 _favouritePage = new LoginFavouritePage();
             }
             _categoryPage = new CategoryPage();
+            _categoryNavigationPage = new HomeNavigationPage(_categoryPage);
             _accountNav = new NavigationBar(_accountPage);
             _cartNavigationPage = new HomeNavigationPage(_cartPage);
             _favouriteNavigationPage = new HomeNavigationPage(_favouritePage);
             _homePage = new HomePage();
             _homeNavigationPage = new HomeNavigationPage(_homePage);
 
-            
+            _categoryNavigationPage.Title = "Kategoriler";
+            _categoryNavigationPage.IconImageSource = "loupe.png";
+            _categoryNavigationPage.HeightRequest = 100;
             _accountPage.Title = "Hesabım";
             _accountPage.IconImageSource = "user.png";
-            _categoryPage.Title = "Kategoriler";
-            _categoryPage.IconImageSource = "loupe.png";
             _accountNav.Title = "Hesabım";
             _accountNav.IconImageSource = "user.png";
             _cartPage.IconImageSource = "cart.png";
@@ -78,7 +80,7 @@ namespace TrendyolApp.View
             _homeNavigationPage.IconImageSource = "home.png";
 
             this.Children.Add(_homeNavigationPage);
-            this.Children.Add(_categoryPage);
+            this.Children.Add(_categoryNavigationPage);
             this.Children.Add(_favouriteNavigationPage);
             this.Children.Add(_cartNavigationPage);
             this.Children.Add(_accountNav);
@@ -89,7 +91,7 @@ namespace TrendyolApp.View
 
         private void TabPage_CurrentPageChanged(object sender, EventArgs e)
         {
-            if (this.CurrentPage is NavigationBar && !(Preferences.Get("Registered",false)))
+            if (this.CurrentPage is NavigationBar && !(Preferences.Get("Registered", false)))
             {
                 _accountPage.Navigation.PushModalAsync(_loginPage);
 
@@ -97,8 +99,8 @@ namespace TrendyolApp.View
         }
         public void LoadNotLoginPages()
         {
-           
-           
+
+
         }
     }
 }

@@ -1,12 +1,105 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TrendyolApp.View.CategoryPage">
+             x:Class="TrendyolApp.View.CategoryPage"
+             xmlns:ViewModels="clr-namespace:TrendyolApp.ViewModels"
+             xmlns:ExpandableView="clr-namespace:Expandable;assembly=ExpandableView"
+             BackgroundColor="White"
+             xmlns:Customlayouts ="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
+             xmlns:views ="clr-namespace:TrendyolApp.View"
+             >
+    <NavigationPage.TitleView>
+        <Frame Padding="0" Margin="0" CornerRadius="15" HasShadow="False" BorderColor="Black">
+            <SearchBar  Placeholder="Marka, ürün veya kategori ara" VerticalOptions="Center">
+            </SearchBar>
+        </Frame>
+    </NavigationPage.TitleView>
+    <ContentPage.BindingContext>
+        <ViewModels:CategoryPageViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" >
+                    <CollectionView
+                x:Name="CategoryList"
+                ItemsSource="{Binding Categories}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout HorizontalOptions="Fill" VerticalOptions="StartAndExpand">
+                                    <Frame BackgroundColor="#f5f5f5" HorizontalOptions="FillAndExpand" Padding="0" VerticalOptions="FillAndExpand" HeightRequest="80">
+                                        <StackLayout Padding="0" Margin="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Orientation="Vertical" WidthRequest="80">
+                                            <Image Source="{Binding Url}" Aspect="AspectFit" HeightRequest="30" WidthRequest="20"/>
+                                            <Label FontSize="11" Text="{Binding CategoryName}" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+                                            <BoxView Margin="0" BackgroundColor="LightGray" HeightRequest="0.1" HorizontalOptions="Fill"/>
+
+                                        </StackLayout>
+
+                                    </Frame>
+
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding  Source={RelativeSource AncestorType={x:Type ViewModels:CategoryPageViewModel}}, Path= GetSubCategories}" CommandParameter="{Binding CategoryId}" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+                <StackLayout Grid.Column="1">
+                    <CollectionView
+                        ItemsSource="{Binding SubCategories, Mode=TwoWay}"
+                        x:Name="SubCatCollection"
+                        >
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <ExpandableView:ExpandableView x:Name="ExpanedItem" VerticalOptions="StartAndExpand">
+                                    <ExpandableView:ExpandableView.PrimaryView>
+                                        <StackLayout Orientation="Vertical" Padding="0" HeightRequest="40" BackgroundColor="Transparent">
+                                            <Frame Padding="0" VerticalOptions="Fill" HorizontalOptions="FillAndExpand">
+                                                <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+                                                    <Label Text="{Binding CategoryName}"/>
+                                                    <Image Source="ExpandupArrow.png" HorizontalOptions="End" Aspect="AspectFit" WidthRequest="20" Margin="10"/>
+                                                </FlexLayout>
+                                            </Frame>
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="AutoToggleForExpandableViews" Command="{Binding  Source={RelativeSource AncestorType={x:Type ViewModels:CategoryPageViewModel}}, Path= GetSubSubCategories}" CommandParameter="{Binding SubCategoryId}" />
+                                            </StackLayout.GestureRecognizers>
+
+                                        </StackLayout>
+                                    </ExpandableView:ExpandableView.PrimaryView>
+                                    <ExpandableView:ExpandableView.SecondaryViewTemplate>
+                                        <DataTemplate>
+                                            <StackLayout VerticalOptions="StartAndExpand" MinimumHeightRequest="750">
+                                                <Customlayouts:RepeatableWrapLayout VerticalOptions="StartAndExpand" BindableLayout.ItemsSource="{Binding  Source={RelativeSource AncestorType={x:Type ViewModels:CategoryPageViewModel}}, Path= SubSubCategories}">
+                                                    <BindableLayout.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <StackLayout BackgroundColor="Transparent" Margin="5" WidthRequest="100" HeightRequest="150">
+                                                                <Frame HeightRequest="120" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="10">
+                                                                    <ImageButton Aspect="AspectFit" Source="{Binding Url}" CommandParameter="{Binding .}" Clicked="OpenSubSubCategory"/>
+                                                                </Frame>
+                                                                <StackLayout HeightRequest="30">
+                                                                    <Label Text="{Binding CategoryName}"/>
+                                                                </StackLayout>
+                                                            </StackLayout>
+                                                        </DataTemplate>
+                                                    </BindableLayout.ItemTemplate>
+                                                </Customlayouts:RepeatableWrapLayout>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </ExpandableView:ExpandableView.SecondaryViewTemplate>
+                                </ExpandableView:ExpandableView>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </Grid>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

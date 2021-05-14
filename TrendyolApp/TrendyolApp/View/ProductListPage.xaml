@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrendyolApp.View.ProductListPage"
+             xmlns:viewModels ="clr-namespace:TrendyolApp.ViewModels"
+             >
+
+    <ContentPage.BindingContext>
+        <viewModels:ProductListViewModel></viewModels:ProductListViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <CollectionView ItemsSource="{Binding ListProducts}"/>
+
+    </ContentPage.Content>
+</ContentPage>
