@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using TrendyolApp.Models;
+using Xamarin.Forms.Internals;
 
 namespace TrendyolApp.Data
 {
@@ -20,7 +22,9 @@ namespace TrendyolApp.Data
 
                     ProductName = "Hummel hml",
                     Description = "Güzel bir ayakkabı dosta gider",
-                    Category = new Category(){ CategoryId=1,CategoryName = "ayakkabı"},
+                    Category = CategoryData.Categories.Where((ctr) => ctr.CategoryId == 1).FirstOrDefault(),
+                    SubCategory = SubCategoryData.SubCategories.Where((ctr) => ctr.SubCategoryId == 2).FirstOrDefault(),
+                    SubSubCategory = SubSubCategoryData.SubSubCategories.Where((ctr) => ctr.SubSubCategoryId == 16 ).FirstOrDefault(),
                     Brand = "Hummel",
                     Photos = new List<PhotoModel>(){
                         new PhotoModel{ Id =0,Url="https://cdn.dsmcdn.com/mnresize/415/622/ty79/product/media/images/20210304/14/68692988/70765176/1/1_org_zoom.jpg" },
@@ -35,7 +39,9 @@ namespace TrendyolApp.Data
                 new ProductModel{
                     ProductName = "Hummel hml",
                     Description = "Güzel bir ayakkabı dosta gider",
-                    Category = new Category(){ CategoryId=1,CategoryName = "ayakkabı"},
+                   Category = CategoryData.Categories.Where((ctr) => ctr.CategoryId == 1).FirstOrDefault(),
+                    SubCategory = SubCategoryData.SubCategories.Where((ctr) => ctr.SubCategoryId == 2).FirstOrDefault(),
+                    SubSubCategory = SubSubCategoryData.SubSubCategories.Where((ctr) => ctr.SubSubCategoryId == 16 ).FirstOrDefault(),
                     Brand = "Hummel",
                     Photos = new List<PhotoModel>(){
                         new PhotoModel{ Id =0,Url="https://cdn.dsmcdn.com/mnresize/415/622/ty79/product/media/images/20210304/14/68692988/70765176/1/1_org_zoom.jpg" },
@@ -50,7 +56,9 @@ namespace TrendyolApp.Data
                 new ProductModel{
                     ProductName = "Hummel hml",
                     Description = "Güzel bir ayakkabı dosta gider",
-                    Category = new Category(){ CategoryId=1,CategoryName = "ayakkabı"},
+                    Category = CategoryData.Categories.Where((ctr) => ctr.CategoryId == 1).FirstOrDefault(),
+                    SubCategory = SubCategoryData.SubCategories.Where((ctr) => ctr.SubCategoryId == 2).FirstOrDefault(),
+                    SubSubCategory = SubSubCategoryData.SubSubCategories.Where((ctr) => ctr.SubSubCategoryId == 16 ).FirstOrDefault(),
                     Brand = "Hummel",
                     Photos = new List<PhotoModel>(){
                         new PhotoModel{ Id =0,Url="https://cdn.dsmcdn.com/mnresize/415/622/ty79/product/media/images/20210304/14/68692988/70765176/1/1_org_zoom.jpg" },
@@ -65,7 +73,9 @@ namespace TrendyolApp.Data
                 new ProductModel{
                     ProductName = "Hummel hml",
                     Description = "Güzel bir ayakkabı dosta gider",
-                    Category = new Category(){ CategoryId=1,CategoryName = "ayakkabı"},
+                    Category = CategoryData.Categories.Where((ctr) => ctr.CategoryId == 1).FirstOrDefault(),
+                    SubCategory = SubCategoryData.SubCategories.Where((ctr) => ctr.SubCategoryId == 2).FirstOrDefault(),
+                    SubSubCategory = SubSubCategoryData.SubSubCategories.Where((ctr) => ctr.SubSubCategoryId == 16 ).FirstOrDefault(),
                     Brand = "Hummel",
                     Photos = new List<PhotoModel>(){
                         new PhotoModel{ Id =0,Url="https://cdn.dsmcdn.com/mnresize/415/622/ty79/product/media/images/20210304/14/68692988/70765176/1/1_org_zoom.jpg" },
@@ -80,7 +90,9 @@ namespace TrendyolApp.Data
                 new ProductModel{
                     ProductName = "Hummel hml",
                     Description = "Güzel bir ayakkabı dosta gider",
-                    Category = new Category(){ CategoryId=1,CategoryName = "ayakkabı"},
+                    Category = CategoryData.Categories.Where((ctr) => ctr.CategoryId == 1).FirstOrDefault(),
+                    SubCategory = SubCategoryData.SubCategories.Where((ctr) => ctr.SubCategoryId == 2).FirstOrDefault(),
+                    SubSubCategory = SubSubCategoryData.SubSubCategories.Where((ctr) => ctr.SubSubCategoryId == 16 ).FirstOrDefault(),
                     Brand = "Hummel",
                     Photos = new List<PhotoModel>(){
                         new PhotoModel{ Id =0,Url="https://cdn.dsmcdn.com/mnresize/415/622/ty79/product/media/images/20210304/14/68692988/70765176/1/1_org_zoom.jpg" },
