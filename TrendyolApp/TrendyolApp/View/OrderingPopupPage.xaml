@@ -1,0 +1,29 @@
+﻿<rg:PopupPage  xmlns:rg="http://rotorgames.com" 
+               xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrendyolApp.View.OrderingPopupPage"
+              xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit">
+    <ContentPage.Content>
+        <StackLayout HeightRequest="450" VerticalOptions="End" BackgroundColor="Transparent">
+            <Frame VerticalOptions="FillAndExpand" CornerRadius="30" Padding="0">
+                <StackLayout Margin="0,15,0,0">
+                    <Label Margin="25,10,0,15" Text="Sıralama" FontSize="22" TextColor="Black"/>
+                    <BoxView BackgroundColor="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand"/>
+
+                    <StackLayout Padding="20" VerticalOptions="Center">
+                    <input:RadioButtonGroupView Spacing="25">
+                            <input:RadioButton Color="#f27a1a" TextFontSize="19" Text="Önerilen" TextColor="Black" Clicked="SuggestionFilter" />
+                            <input:RadioButton Color="#f27a1a" TextFontSize="19" Text="En Düşük Fiyat" Clicked="LowtoHighPriceFilter" TextColor="Black" />
+                            <input:RadioButton Color="#f27a1a" TextFontSize="19" Text="En Yüksek Fiyat" Clicked="HighToLowPriceFilter" TextColor="Black" />
+                            <input:RadioButton Color="#f27a1a" TextFontSize="19" Text="Çok Satanlar" Clicked="BestSellerFilter" TextColor="Black" />
+                            <input:RadioButton Color="#f27a1a" TextFontSize="19" Text="En Favoriler" Clicked="MostFavouriteFilter" TextColor="Black" />
+                            <input:RadioButton Color="#f27a1a" TextFontSize="19" Text="En Yeniler" Clicked="NewestFilter" TextColor="Black" />
+                            <input:RadioButton Color="#f27a1a" TextFontSize="19" Text="En Çok Değerlendirilenler" Clicked="MostEvaluatedFilter" TextColor="Black" />
+                    </input:RadioButtonGroupView>
+                </StackLayout>
+                </StackLayout>
+
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</rg:PopupPage>
