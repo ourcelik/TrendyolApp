@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Extensions;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,9 +19,21 @@ namespace TrendyolApp.View
         public ProductListPage(SubSubCategory subSubCategory)
         {
             InitializeComponent();
-            this.BindingContext = new ProductListViewModel(subSubCategory);
+            var context =  new ProductListViewModel(subSubCategory);
+            this.BindingContext = context;
+            MessagingCenter.Subscribe<OrderingPopupPage, ObservableCollection<ProductModel>>(this, "Ordering", (sender, value) =>
+             {
+                 context.ListProducts = value;
+             });
 
 
+        }
+
+        private void OrderingPopup(object sender, EventArgs e)
+        {
+            var pop = new OrderingPopupPage();
+            App.Current.MainPage.Navigation.PushPopupAsync(pop, true);
+            
         }
     }
 }

@@ -3,13 +3,93 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TrendyolApp.View.ProductListPage"
              xmlns:viewModels ="clr-namespace:TrendyolApp.ViewModels"
+             NavigationPage.HasBackButton="True"
+             xmlns:wrapLayouts ="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
              >
 
+    
     <ContentPage.BindingContext>
         <viewModels:ProductListViewModel></viewModels:ProductListViewModel>
     </ContentPage.BindingContext>
+    <NavigationPage.TitleView>
+        <Frame Padding="0" Margin="0" CornerRadius="15" HasShadow="False" BorderColor="LightGray">
+            <SearchBar  Placeholder="Marka, ürün veya kategori ara" VerticalOptions="Center">
+            </SearchBar>
+        </Frame>
+    </NavigationPage.TitleView>
+    
     <ContentPage.Content>
-        <CollectionView ItemsSource="{Binding ListProducts}"/>
+        <ScrollView>
+        <StackLayout VerticalOptions="StartAndExpand">
+            <StackLayout BackgroundColor="Black" Spacing="0" Orientation="Horizontal" HeightRequest="53">
+                <Frame HorizontalOptions="FillAndExpand" Padding="0" VerticalOptions="FillAndExpand" HasShadow="True" CornerRadius="0" BorderColor="LightGray">
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Image Source="ordericon.png" HeightRequest="25"/>
+                            <Label Text="Sırala" FontSize="16" TextColor="Black"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OrderingPopup"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    
+                </Frame>
+                <Frame HorizontalOptions="FillAndExpand" Padding="0" VerticalOptions="FillAndExpand" HasShadow="True" CornerRadius="0" BorderColor="LightGray">
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Image Source="filtericon.png" HeightRequest="25"/>
+                            <Label Text="Filtrele" FontSize="16" TextColor="Black"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OrderingPopup"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            
+            <wrapLayouts:WrapLayout VerticalOptions="StartAndExpand" BindableLayout.ItemsSource="{Binding ListProducts}">
+              
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal">
+                                <StackLayout Margin="5" Orientation="Horizontal" VerticalOptions="Start" BackgroundColor="Transparent" WidthRequest="195">
 
+                                    <Frame HorizontalOptions="FillAndExpand"  Padding="0" CornerRadius="15" HeightRequest="280">
+                                        <Grid>
+
+                                            <ImageButton Source="{Binding TopPhoto.Url}" CommandParameter="{Binding .}"  VerticalOptions="StartAndExpand" HeightRequest="170" Aspect="AspectFill"/>
+                                            <StackLayout BackgroundColor="Transparent" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="30" WidthRequest="30" Margin="14">
+                                                <Frame VerticalOptions="FillAndExpand" HeightRequest="15" HorizontalOptions="FillAndExpand" Padding="0" CornerRadius="15">
+                                                    <Image Source="star.png"/>
+                                                </Frame>
+                                            </StackLayout>
+                                            <StackLayout VerticalOptions="EndAndExpand">
+                                                <Label Margin="5,0,0,0" LineBreakMode="TailTruncation" MaxLines="2" FontAttributes="Bold"  TextColor="Black">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="{Binding Brand}" FontAttributes="Bold" FontSize="14"/>
+                                                            <Span Text=" " />
+                                                            <Span Text="{Binding Description}" TextColor="#737373" FontAttributes="Bold" FontSize="12"/>
+
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Label Margin="15,0,0,10">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="{Binding Price}" TextColor="Orange" FontAttributes="Bold"/>
+                                                            <Span Text=" "/>
+                                                            <Span Text="{Binding Currency.CurrencyType}" TextColor="Orange" FontAttributes="Bold"/>
+
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </wrapLayouts:WrapLayout>
+
+        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

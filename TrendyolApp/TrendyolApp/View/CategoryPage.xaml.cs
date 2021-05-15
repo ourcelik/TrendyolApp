@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrendyolApp.Models;
+using TrendyolApp.View.NavigationPages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -37,7 +38,7 @@ namespace TrendyolApp.View
         {
             ImageButton button = (ImageButton)sender;
             var subSubCategory = (SubSubCategory)button.CommandParameter;
-            Application.Current.MainPage.Navigation.PushModalAsync(new ProductListPage(subSubCategory));
+            Application.Current.MainPage.Navigation.PushModalAsync(new HomeNavigationPage(new ProductListPage(subSubCategory)));
 
         }
     }
