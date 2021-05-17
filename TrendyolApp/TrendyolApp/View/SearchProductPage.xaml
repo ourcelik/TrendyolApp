@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrendyolApp.View.SearchProductPage"
+             NavigationPage.HasBackButton="True"
+             >
+
+    <NavigationPage.TitleView>
+        <Frame Padding="0" Margin="0" CornerRadius="15" HasShadow="False" BorderColor="LightGray">
+            <SearchBar TextChanged="SearchProducts"  Placeholder="Marka, ürün veya kategori ara" VerticalOptions="Center">
+            </SearchBar>
+        </Frame>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <ListView x:Name="SearchResultList">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding ProductName}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
