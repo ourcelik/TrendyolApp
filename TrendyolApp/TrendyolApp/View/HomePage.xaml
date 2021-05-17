@@ -151,7 +151,7 @@
                                                         <Frame VerticalOptions="FillAndExpand"  Padding="0" CornerRadius="15" HeightRequest="250">
                                                             <Grid>
 
-                                                                <ImageButton Source="{Binding TopPhoto.Url}" CommandParameter="{Binding .}" Clicked="ImageProductClick" VerticalOptions="StartAndExpand" HeightRequest="170" Aspect="AspectFill"/>
+                                                                <Image Source="{Binding TopPhoto.Url}" VerticalOptions="StartAndExpand" HeightRequest="170" Aspect="AspectFill"/>
                                                                 <StackLayout BackgroundColor="Transparent" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="30" WidthRequest="30" Margin="14">
                                                                     <Frame VerticalOptions="FillAndExpand" HeightRequest="15" HorizontalOptions="FillAndExpand" Padding="0" CornerRadius="15">
                                                                         <Image Source="star.png"/>
@@ -322,7 +322,7 @@
                                                         <Frame VerticalOptions="FillAndExpand"  Padding="0" CornerRadius="15" HeightRequest="250">
                                                             <Grid>
 
-                                                                <ImageButton Source="{Binding TopPhoto.Url}" CommandParameter="{Binding .}" Clicked="ImageProductClick" VerticalOptions="StartAndExpand" HeightRequest="170" Aspect="AspectFill"/>
+                                                                <Image Source="{Binding TopPhoto.Url}"   VerticalOptions="StartAndExpand" HeightRequest="170" Aspect="AspectFill"/>
                                                                 <StackLayout BackgroundColor="Transparent" VerticalOptions="Start" HorizontalOptions="End" HeightRequest="30" WidthRequest="30" Margin="14">
                                                                     <Frame VerticalOptions="FillAndExpand" HeightRequest="15" HorizontalOptions="FillAndExpand" Padding="0" CornerRadius="15">
                                                                         <Image Source="star.png"/>

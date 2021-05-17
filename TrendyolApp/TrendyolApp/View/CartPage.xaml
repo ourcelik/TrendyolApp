@@ -29,15 +29,13 @@
                         <Button  Margin="0,10,0,0" Text="GİRİŞ YAP" TextColor="White" CharacterSpacing="1.5" CornerRadius="2" HeightRequest="50" BackgroundColor="#f27a1b"></Button>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout x:Name="CartList" IsVisible="False" Margin="10,0,10,0" BackgroundColor="Transparent" VerticalOptions="StartAndExpand">
+                <StackLayout x:Name="CartList" IsVisible="False" Margin="10,10,10,10" BackgroundColor="Transparent" VerticalOptions="StartAndExpand">
                     <Frame VerticalOptions="StartAndExpand" CornerRadius="10" Padding="0">
                         <StackLayout VerticalOptions="StartAndExpand">
                             <StackLayout Orientation="Vertical" Margin="15">
                                 <Grid>
-                                    <Label Text="Çok Satanlar" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Start" />
-                                    <StackLayout>
-                                        <Label Text="Tümünü gör >" TextColor="#f38126" HorizontalOptions="End" FontAttributes="Bold" />
-                                    </StackLayout>
+                                    <Label Text="Sepetim" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Start" />
+
 
                                 </Grid>
 
@@ -55,25 +53,31 @@
                                                     </Frame>
                                                 </StackLayout>
                                                 <StackLayout Orientation="Vertical">
-                                                    <Label Margin="5,0,0,0" LineBreakMode="TailTruncation">
-                                                        <Label.FormattedText>
-                                                            <FormattedString>
-                                                                <Span Text="{Binding Product.Brand}" FontAttributes="Bold" TextColor="#363636"/>
-                                                                <Span Text=" "/>
-                                                                <Span Text="{Binding Product.Description}" FontAttributes="Bold" TextColor="#a5a5a5"/>
-                                                            </FormattedString>
-                                                        </Label.FormattedText>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <StackLayout>
+                                                            <Label Margin="5,0,0,0" LineBreakMode="TailTruncation">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span Text="{Binding Product.Brand}" FontAttributes="Bold" TextColor="#363636"/>
+                                                                        <Span Text=" "/>
+                                                                        <Span Text="{Binding Product.Description}" FontAttributes="Bold" TextColor="#a5a5a5"/>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
 
-                                                    </Label>
-                                                    <Label Margin="5,0,0,0">
-                                                        <Label.FormattedText>
-                                                            <FormattedString>
-                                                                <Span Text="Tahmini Teslimat:"/>
-                                                                <Span Text="{Binding Product.DeliveryDate.DayOfWeek}"/>
-                                                            </FormattedString>
-                                                        </Label.FormattedText>
+                                                            </Label>
+                                                            <Label Margin="5,0,0,0">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span Text="Tahmini Teslimat:"/>
+                                                                        <Span Text="{Binding Product.DeliveryDate.DayOfWeek}"/>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
 
-                                                    </Label>
+                                                            </Label>
+                                                        </StackLayout>
+                                                        <ImageButton CommandParameter="{Binding Product}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CartPageViewModel}}, Path=RemoveProduct}" Source="trash.png" BackgroundColor="Transparent"/>
+                                                    </StackLayout>
+
                                                     <FlexLayout Margin="5,40,0,0" JustifyContent="SpaceBetween" AlignItems="Center">
                                                         <Label>
                                                             <Label.FormattedText>
@@ -91,7 +95,6 @@
                                                                 </FormattedString>
                                                             </Label.FormattedText>
                                                         </Label>
-
                                                     </FlexLayout>
                                                 </StackLayout>
 

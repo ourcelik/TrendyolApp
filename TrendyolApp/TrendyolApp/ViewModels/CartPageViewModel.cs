@@ -35,6 +35,15 @@ namespace TrendyolApp.ViewModels
                 }
 
                 );
+            RemoveProduct = new Command(
+                (Product) =>
+                {
+                    CartData.RemoveProduct((ProductModel)Product);
+                    OnPropertyChanged(nameof(CartProducts));
+
+                }
+
+                );
 
         }
 
@@ -51,6 +60,7 @@ namespace TrendyolApp.ViewModels
         }
 
         public Command AddProduct { get; set; }
+        public Command RemoveProduct { get; set; }
 
     }
 }

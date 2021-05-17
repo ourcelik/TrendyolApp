@@ -27051,10 +27051,13 @@ namespace TrendyolApp.Droid
 			public const int tooltip_frame_light = 2131165383;
 			
 			// aapt resource value: 0x7F0700C8
-			public const int user = 2131165384;
+			public const int trash = 2131165384;
 			
 			// aapt resource value: 0x7F0700C9
-			public const int women = 2131165385;
+			public const int user = 2131165385;
+			
+			// aapt resource value: 0x7F0700CA
+			public const int women = 2131165386;
 			
 			static Drawable()
 			{

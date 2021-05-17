@@ -25,9 +25,8 @@ namespace TrendyolApp.View
         private void SuggestionFilter(object sender, EventArgs e)
         {
             products.Clear();
-            OrderingPopupViewModel.GetFilterData().OrderBy(p => p.ProductName).ToList().ForEach(p=> products.Add(p));
+            OrderingPopupViewModel.GetFilterData().OrderBy(p => p.ProductName).ToList().ForEach(p => products.Add(p));
             MessagingCenter.Send<OrderingPopupPage, ObservableCollection<ProductModel>>(this, "Ordering", products);
-            this.OnBackButtonPressed();
         }
         private void LowtoHighPriceFilter(object sender, EventArgs e)
         {
@@ -45,7 +44,7 @@ namespace TrendyolApp.View
         private void BestSellerFilter(object sender, EventArgs e)
         {
             products.Clear();
-            OrderingPopupViewModel.GetFilterData().OrderBy(p => p.ProductInfo).ToList().ForEach(p => products.Add(p));
+            OrderingPopupViewModel.GetFilterData().OrderBy(p => p.ProductName).ToList().ForEach(p => products.Add(p));
             MessagingCenter.Send<OrderingPopupPage, ObservableCollection<ProductModel>>(this, "Ordering", products);
         }
         private void MostFavouriteFilter(object sender, EventArgs e)

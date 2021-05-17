@@ -1,4 +1,4 @@
-﻿<rg:PopupPage  xmlns:rg="http://rotorgames.com" 
+﻿<rg:PopupPage  xmlns:rg="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TrendyolApp.View.OrderingPopupPage"
@@ -11,7 +11,7 @@
                     <BoxView BackgroundColor="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand"/>
 
                     <StackLayout Padding="20" VerticalOptions="Center">
-                    <input:RadioButtonGroupView Spacing="25">
+                        <input:RadioButtonGroupView Spacing="25">
                             <input:RadioButton Color="#f27a1a" TextFontSize="19" Text="Önerilen" TextColor="Black" Clicked="SuggestionFilter" />
                             <input:RadioButton Color="#f27a1a" TextFontSize="19" Text="En Düşük Fiyat" Clicked="LowtoHighPriceFilter" TextColor="Black" />
                             <input:RadioButton Color="#f27a1a" TextFontSize="19" Text="En Yüksek Fiyat" Clicked="HighToLowPriceFilter" TextColor="Black" />
@@ -19,8 +19,8 @@
                             <input:RadioButton Color="#f27a1a" TextFontSize="19" Text="En Favoriler" Clicked="MostFavouriteFilter" TextColor="Black" />
                             <input:RadioButton Color="#f27a1a" TextFontSize="19" Text="En Yeniler" Clicked="NewestFilter" TextColor="Black" />
                             <input:RadioButton Color="#f27a1a" TextFontSize="19" Text="En Çok Değerlendirilenler" Clicked="MostEvaluatedFilter" TextColor="Black" />
-                    </input:RadioButtonGroupView>
-                </StackLayout>
+                        </input:RadioButtonGroupView>
+                    </StackLayout>
                 </StackLayout>
 
             </Frame>

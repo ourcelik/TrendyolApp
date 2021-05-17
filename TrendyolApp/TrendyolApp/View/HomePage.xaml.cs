@@ -32,14 +32,7 @@ namespace TrendyolApp.View
 
 
         }
-        async private void ImageProductClick(object sender, EventArgs e)
-        {
-            ImageButton data = (ImageButton)sender;
-            var product = data.CommandParameter;
-            await this.Navigation.PushModalAsync(new ProductNavigationPage(new ProductDetailPage(product)), false);
 
-
-        }
 
     }
 }
