@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrendyolApp.Data;
+using TrendyolApp.View.NavigationPages;
+using TrendyolApp.ViewModels;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,6 +18,7 @@ namespace TrendyolApp.View
         public CartPage()
         {
             InitializeComponent();
+            SetCartButton();
             MessagingCenter.Subscribe<ProductDetailPage, bool>(this, "MakeVisible", (sender, value) => {
                 CartList.IsVisible = value;
                 EmptyList.IsVisible = !value;
@@ -34,6 +38,41 @@ namespace TrendyolApp.View
         {
             EmptyList.IsVisible = false;
             CartList.IsVisible = true;
+            CostFlexLayout.IsVisible = true;
+        }
+
+        private void ImageButton_Clicked(object sender, EventArgs e)
+        {
+            var data = (CartPageViewModel)BindingContext;
+            if (data.SumOfCart == 0)
+            {
+                CartList.IsVisible = false;
+                CostFlexLayout.IsVisible = false;
+                EmptyList.IsVisible = true;
+            }
+        }
+
+        private void Click_Continue_to_Order(object sender, EventArgs e)
+        {
+            if (!Preferences.Get("Registered", false))
+            {
+                App.Current.MainPage.Navigation.PushModalAsync(new LoginPage());
+            }
+            else
+            {
+                App.Current.MainPage.Navigation.PushModalAsync(new ProductNavigationPage(new OrderPage()));
+            }
+        }
+        private void SetCartButton()
+        {
+            if (!Preferences.Get("Registered", false))
+            {
+                CartPageButton.Text = "Giriş Yap";
+            }
+            else
+            {
+                CartPageButton.Text = "Alışverişe Devam Et";
+            }
         }
     }
 }

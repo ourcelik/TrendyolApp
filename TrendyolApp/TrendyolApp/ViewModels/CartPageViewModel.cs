@@ -14,7 +14,19 @@ namespace TrendyolApp.ViewModels
     public class CartPageViewModel : BaseViewModel
     {
         ObservableCollection<CartModel> cartProducts;
-
+        private decimal sumOfCart = 0;
+        public decimal SumOfCart
+        {
+            get
+            {
+                return sumOfCart;
+            }
+            set
+            {
+                sumOfCart = value;
+                OnPropertyChanged(nameof(SumOfCart));
+            }
+        }
 
         public ObservableCollection<CartModel> CartProducts
         {
@@ -30,20 +42,28 @@ namespace TrendyolApp.ViewModels
             AddProduct = new Command(
                 (product) =>
                 {
-                    CartData.AddProduct((ProductModel)product);
+                    ProductModel _product = (ProductModel)product;
+                    CartData.AddProduct(_product);
+                    UpdateCartCost();
+                    OnPropertyChanged(nameof(sumOfCart));
                     OnPropertyChanged(nameof(CartProducts));
+
                 }
 
                 );
             RemoveProduct = new Command(
-                (Product) =>
+                (product) =>
                 {
-                    CartData.RemoveProduct((ProductModel)Product);
+                    ProductModel _product = (ProductModel)product;
+                    CartData.RemoveProduct((ProductModel)product);
+                    UpdateCartCost();
+                    OnPropertyChanged(nameof(sumOfCart));
                     OnPropertyChanged(nameof(CartProducts));
 
                 }
 
                 );
+            UpdateCartCost();
 
         }
 
@@ -57,6 +77,14 @@ namespace TrendyolApp.ViewModels
         {
             cartProducts = CartData.CreateCart();
 
+        }
+        private void UpdateCartCost()
+        {
+            SumOfCart = 0;
+            foreach (var item in cartProducts)
+            {
+                SumOfCart += item.Product.Price * item.Count;
+            }
         }
 
         public Command AddProduct { get; set; }
