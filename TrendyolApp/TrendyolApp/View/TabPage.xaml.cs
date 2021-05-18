@@ -38,16 +38,15 @@ namespace TrendyolApp.View
             {
                 _loginPage = new LoginPage();
                 _accountPage = new AccountPage();
-                _cartPage = new CartPage();
                 _favouritePage = new FavouritePage();
                 _loginPage.Title = "Giriş Yap";
             }
             else
             {
                 _accountPage = new LoginAccountPage();
-                _cartPage = new LoginCartPage();
                 _favouritePage = new LoginFavouritePage();
             }
+            _cartPage = new CartPage();
             _categoryPage = new CategoryPage();
             _categoryNavigationPage = new HomeNavigationPage(_categoryPage);
             _accountNav = new NavigationBar(_accountPage);

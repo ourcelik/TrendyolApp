@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrendyolApp.View.OrderPage"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit" xmlns:customrenderer="clr-namespace:TrendyolApp.CustomRenderer">
+
+    <NavigationPage.TitleView>
+        <StackLayout BackgroundColor="Transparent" HorizontalOptions="Start">
+            <Frame VerticalOptions="FillAndExpand" WidthRequest="30" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" Padding="0">
+                <ImageButton Clicked="ClickBackButton" Source="cross.png" BackgroundColor="Transparent" Aspect="AspectFill" Opacity="1"/>
+            </Frame>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="ssl.png"/>
+    </ContentPage.ToolbarItems>
+
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView VerticalScrollBarVisibility="Never">
+                <StackLayout >
+                    <StackLayout Margin="10,20,10,0">
+                        <Frame CornerRadius="10" Padding="0">
+                            <StackLayout>
+                                <FlexLayout Padding="20,20,20,10" JustifyContent="SpaceBetween">
+                                    <Label Text="Teslimat Adresi" FontAttributes="Bold" TextColor="DarkOrange"/>
+                                    <Label Text="Ekle/Düzenle" FontAttributes="Bold" TextColor="#a6a6a6"/>
+                                </FlexLayout>
+                                <BoxView Margin="0,0,0,15" HeightRequest="0.5" BackgroundColor="LightGray"/>
+                                <StackLayout Margin="0,0,0,20" Orientation="Vertical">
+                                    <input:RadioButtonGroupView>
+                                        <StackLayout Orientation="Horizontal" Margin="20,0,0,0">
+                                            <input:RadioButton TextFontSize="15" Color="#f27a1a"  TextColor="Black"/>
+                                            <StackLayout Margin="10,0,0,0" WidthRequest="310">
+                                                <Grid>
+                                                    <Frame Padding="0" HasShadow="False" BackgroundColor="#f5f5f5" BorderColor="LightGray" CornerRadius="0">
+                                                        <customrenderer:CustomEntry WidthRequest="65"/>
+                                                    </Frame>
+                                                </Grid>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout Margin="55,0,0,0" Orientation="Horizontal">
+                                            <input:CheckBox CornerRadius="2" BoxSizeRequest="15" VerticalOptions="Center" Color="DarkOrange" Type="Check" BorderColor="Gray" />
+                                            <Label Text="Faturamı aynı adrese gönder." VerticalOptions="Center"/>
+                                        </StackLayout>
+                                        <BoxView Margin="0,0,0,15" HeightRequest="0.5" BackgroundColor="LightGray"/>
+                                        <StackLayout Orientation="Horizontal" Margin="20,0,0,0">
+                                            <input:RadioButton TextFontSize="15" Color="#f27a1a"  TextColor="Black"/>
+                                            <StackLayout>
+                                                <Label Text="En yakın teslimat noktasından al" FontAttributes="Bold"/>
+                                                <Label Text="10 TL kupon kazan!" TextColor="DarkOrange" FontSize="12" FontAttributes="Bold"/>
+                                            </StackLayout>
+                                        </StackLayout>
+
+                                    </input:RadioButtonGroupView>
+
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout Margin="10,20,10,0">
+                        <Frame CornerRadius="10" Padding="0">
+                            <StackLayout>
+                                <StackLayout Padding="20,20,20,10" >
+                                    <Label Text="Kart Bilgileri" FontAttributes="Bold" TextColor="DarkOrange"/>
+                                </StackLayout>
+                                <BoxView Margin="0,0,0,15" HeightRequest="0.5" BackgroundColor="LightGray"/>
+                                <StackLayout Margin="0,0,0,20" Orientation="Vertical">
+                                    <StackLayout Orientation="Vertical" Margin="20,0,20,20">
+                                        <Label Text="Kart numarası"/>
+                                        <Frame Padding="0" HasShadow="False" BackgroundColor="#f5f5f5" BorderColor="LightGray" CornerRadius="0">
+                                            <customrenderer:CustomEntry/>
+                                        </Frame>
+                                        <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+                                            <StackLayout Orientation="Vertical">
+                                                <Label Text="Son kullanma Tarihi" HorizontalOptions="Center"/>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Frame Padding="0" HasShadow="False" BackgroundColor="#f5f5f5" BorderColor="LightGray" CornerRadius="0">
+                                                        <customrenderer:CustomEntry WidthRequest="65"/>
+                                                    </Frame>
+                                                    <Frame Padding="0" HasShadow="False" BackgroundColor="#f5f5f5" BorderColor="LightGray" CornerRadius="0">
+                                                        <customrenderer:CustomEntry WidthRequest="65"/>
+
+                                                    </Frame>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <StackLayout Orientation="Vertical">
+                                                    <Label Text="CVV" HorizontalOptions="Center"/>
+                                                    <Frame Padding="0" HasShadow="False" BackgroundColor="#f5f5f5" BorderColor="LightGray" CornerRadius="0">
+                                                        <customrenderer:CustomEntry WidthRequest="65"/>
+
+                                                    </Frame>
+                                                </StackLayout>
+                                                <StackLayout BackgroundColor="Transparent">
+                                                    <Button BackgroundColor="White" TextColor="DarkOrange" BorderColor="LightGray" BorderWidth="1" VerticalOptions="EndAndExpand" Text="?" CornerRadius="50" HeightRequest="50" WidthRequest="50"/>
+                                                </StackLayout>
+
+                                            </StackLayout>
+                                        </FlexLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout Margin="10,20,10,100">
+                        <Frame CornerRadius="10" Padding="0">
+                            <StackLayout>
+                                <StackLayout Padding="20,20,20,10" >
+                                    <Label Text="Taksit Seçenekleri" FontAttributes="Bold" TextColor="DarkOrange"/>
+                                </StackLayout>
+                                <BoxView Margin="0,0,0,15" HeightRequest="0.5" BackgroundColor="LightGray"/>
+                                <StackLayout Margin="25,0,25,20" Orientation="Vertical">
+                                    <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+                                        <StackLayout Orientation="Horizontal">
+                                            <input:CheckBox CornerRadius="2" BoxSizeRequest="15"  VerticalOptions="Center" Color="DarkOrange" Type="Check" BorderColor="Gray" />
+                                            <Label Text="Tek Çekim" VerticalOptions="Center"/>
+                                        </StackLayout>
+                                        <StackLayout>
+                                            <Label Text="Fiyar" TextColor="DarkOrange"/>
+                                        </StackLayout>
+                                    </FlexLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+
+                </StackLayout>
+
+
+            </ScrollView>
+
+            <FlexLayout HeightRequest="75" JustifyContent="SpaceBetween" AlignItems="Center" Padding="25,0,25,0" IsVisible="false" BackgroundColor="White" x:Name="CostFlexLayout">
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout VerticalOptions="Center">
+                        <Image Source="upcart.png" HeightRequest="28"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Toplam" HorizontalOptions="Center"/>
+                        <StackLayout Orientation="Horizontal" Spacing="5">
+
+                            <Label Text="{Binding SumOfCart}" HorizontalOptions="Center" TextColor="#f27a1b" FontAttributes="Bold"/>
+                            <Label Text="TL" HorizontalOptions="Center" TextColor="#f27a1b" FontAttributes="Bold"/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout HorizontalOptions="Center" WidthRequest="250" >
+                    <Button Text="Sepeti Onayla" TextColor="White" TextTransform="None" CharacterSpacing="1" FontSize="16" FontAttributes="Bold" CornerRadius="5" HeightRequest="45" BackgroundColor="#f27a1b"></Button>
+                </StackLayout>
+            </FlexLayout>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
