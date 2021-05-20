@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,12 +28,16 @@ namespace TrendyolApp.View
             products.Clear();
             OrderingPopupViewModel.GetFilterData().OrderBy(p => p.ProductName).ToList().ForEach(p => products.Add(p));
             MessagingCenter.Send<OrderingPopupPage, ObservableCollection<ProductModel>>(this, "Ordering", products);
+            App.Current.MainPage.Navigation.PopPopupAsync();
         }
         private void LowtoHighPriceFilter(object sender, EventArgs e)
         {
             products.Clear();
             OrderingPopupViewModel.GetFilterData().OrderBy(p => p.Price).ToList().ForEach(p => products.Add(p));
             MessagingCenter.Send<OrderingPopupPage, ObservableCollection<ProductModel>>(this, "Ordering", products);
+            App.Current.MainPage.Navigation.PopPopupAsync();
+
+
         }
         private void HighToLowPriceFilter(object sender, EventArgs e)
         {
@@ -40,30 +45,40 @@ namespace TrendyolApp.View
             OrderingPopupViewModel.GetFilterData().OrderByDescending(p => p.Price).ToList().ForEach(p => products.Add(p));
 
             MessagingCenter.Send<OrderingPopupPage, ObservableCollection<ProductModel>>(this, "Ordering", products);
+            App.Current.MainPage.Navigation.PopPopupAsync();
+
         }
         private void BestSellerFilter(object sender, EventArgs e)
         {
             products.Clear();
             OrderingPopupViewModel.GetFilterData().OrderBy(p => p.ProductName).ToList().ForEach(p => products.Add(p));
             MessagingCenter.Send<OrderingPopupPage, ObservableCollection<ProductModel>>(this, "Ordering", products);
+            App.Current.MainPage.Navigation.PopPopupAsync();
+
         }
         private void MostFavouriteFilter(object sender, EventArgs e)
         {
             products.Clear();
             OrderingPopupViewModel.GetFilterData().OrderBy(p => p.ProductName).ToList().ForEach(p => products.Add(p));
             MessagingCenter.Send<OrderingPopupPage, ObservableCollection<ProductModel>>(this, "Ordering", products);
+            App.Current.MainPage.Navigation.PopPopupAsync();
+
         }
         private void NewestFilter(object sender, EventArgs e)
         {
             products.Clear();
             OrderingPopupViewModel.GetFilterData().OrderBy(p => p.ProductName).ToList().ForEach(p => products.Add(p));
             MessagingCenter.Send<OrderingPopupPage, ObservableCollection<ProductModel>>(this, "Ordering", products);
+            App.Current.MainPage.Navigation.PopPopupAsync();
+
         }
         private void MostEvaluatedFilter(object sender, EventArgs e)
         {
             products.Clear();
             OrderingPopupViewModel.GetFilterData().OrderBy(p => p.ProductName).ToList().ForEach(p => products.Add(p));
             MessagingCenter.Send<OrderingPopupPage, ObservableCollection<ProductModel>>(this, "Ordering", products);
+            App.Current.MainPage.Navigation.PopPopupAsync();
+
         }
     }
 }

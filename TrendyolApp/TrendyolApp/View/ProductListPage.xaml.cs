@@ -27,19 +27,18 @@ namespace TrendyolApp.View
             {
                 _context.ListProducts = value;
             });
-
-
         }
 
-        private void OrderingPopup(object sender, EventArgs e)
+        private async void OrderingPopup(object sender, EventArgs e)
         {
             var pop = new OrderingPopupPage();
-            App.Current.MainPage.Navigation.PushPopupAsync(pop, true);
+            await App.Current.MainPage.Navigation.PushPopupAsync(pop, true);
 
         }
-        private void FilteringPopup(object sender, EventArgs e)
+        private async void FilteringPopup(object sender, EventArgs e)
         {
-
+            var pop = new FilteringPopupPage(_context.ListProducts);
+            await App.Current.MainPage.Navigation.PushPopupAsync(pop, true);
 
 
         }

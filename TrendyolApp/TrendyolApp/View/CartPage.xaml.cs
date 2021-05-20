@@ -19,10 +19,21 @@ namespace TrendyolApp.View
         {
             InitializeComponent();
             SetCartButton();
-            MessagingCenter.Subscribe<ProductDetailPage, bool>(this, "MakeVisible", (sender, value) => {
+            MessagingCenter.Subscribe<ProductDetailPage, bool>(this, "MakeVisible", (sender, value) =>
+            {
                 CartList.IsVisible = value;
                 EmptyList.IsVisible = !value;
             });
+            MessagingCenter.Subscribe<OrderPage, bool>(this, "OrderCompleted", (sender,value) =>
+               {
+                   var context = (CartPageViewModel)BindingContext;
+                   context.CleanToCart();
+                   context.UpdateCartCost();
+                   CartList.IsVisible = false;
+                   CostFlexLayout.IsVisible = false;
+                   EmptyList.IsVisible = true;
+
+               });
             if (CartData.IsNotEmpty())
             {
                 ChangeCartVisibilty();

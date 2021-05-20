@@ -43,6 +43,12 @@ namespace TrendyolApp.Data
             });
 
         }
+
+        public static void Clear()
+        {
+            products.Clear();
+        }
+
         public static bool AlreadyExists(CartModel cartModel)
         {
 

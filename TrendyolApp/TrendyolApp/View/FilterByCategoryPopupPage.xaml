@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage 
+    xmlns:rg="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrendyolApp.View.FilterByCategoryPopupPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="0" WidthRequest="350" HorizontalOptions="End"  VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+            <ScrollView VerticalOptions="FillAndExpand">
+                <Frame VerticalOptions="FillAndExpand" CornerRadius="0" Padding="0" BackgroundColor="#f5f5f5">
+                    <StackLayout>
+
+                        <!--#region NavPanel -->
+                        <Frame VerticalOptions="Start" HasShadow="True" HeightRequest="30">
+                            <StackLayout Orientation="Horizontal" Spacing="30">
+                                <ImageButton VerticalOptions="Center" HorizontalOptions="Center" Source="back.png" BackgroundColor="Transparent"  Clicked="ClosePopup"/>
+                                <Label Text="Kategoriler" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="18" TextColor="Black"/>
+                            </StackLayout>
+                        </Frame>
+                        <!--#endregion-->
+                        <!--#region BrandList -->
+                        <StackLayout Margin="0,15,0,0">
+                            <ListView x:Name="ProductCategoryList"
+                                      ItemSelected="CategorySelected"
+                                      >
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextCell TextColor="Black" Text="{Binding SubCategory.CategoryName}"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+
+                            </ListView>
+                        </StackLayout>
+                        <!--#endregion-->
+
+
+
+
+                    </StackLayout>
+
+                </Frame>
+            </ScrollView>
+            <StackLayout  VerticalOptions="End" BackgroundColor="#f27a1c" HeightRequest="70">
+                <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="White" FontAttributes="Bold" FontSize="18" TextTransform="Uppercase" Text="tamam"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="SendCategoriesToMainFilterPopup"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</rg:PopupPage >

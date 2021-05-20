@@ -2,7 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TrendyolApp.View.OrderPage"
-             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit" xmlns:customrenderer="clr-namespace:TrendyolApp.CustomRenderer">
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             xmlns:customrenderer="clr-namespace:TrendyolApp.CustomRenderer"
+             xmlns:viewModels="clr-namespace:TrendyolApp.ViewModels"
+             >
 
     <NavigationPage.TitleView>
         <StackLayout BackgroundColor="Transparent" HorizontalOptions="Start">
@@ -14,7 +17,9 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="ssl.png"/>
     </ContentPage.ToolbarItems>
-
+    <ContentPage.BindingContext>
+        <viewModels:OrderPageViewModel/>
+    </ContentPage.BindingContext>
 
     <ContentPage.Content>
         <StackLayout>
@@ -104,7 +109,7 @@
                             </StackLayout>
                         </Frame>
                     </StackLayout>
-                    <StackLayout Margin="10,20,10,100">
+                    <StackLayout Margin="10,20,10,50">
                         <Frame CornerRadius="10" Padding="0">
                             <StackLayout>
                                 <StackLayout Padding="20,20,20,10" >
@@ -117,38 +122,35 @@
                                             <input:CheckBox CornerRadius="2" BoxSizeRequest="15"  VerticalOptions="Center" Color="DarkOrange" Type="Check" BorderColor="Gray" />
                                             <Label Text="Tek Çekim" VerticalOptions="Center"/>
                                         </StackLayout>
-                                        <StackLayout>
-                                            <Label Text="Fiyar" TextColor="DarkOrange"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding SumOfCart}" FontAttributes="Bold"/>
+                                            <Label Text="TL" FontAttributes="Bold"/>
                                         </StackLayout>
                                     </FlexLayout>
                                 </StackLayout>
                             </StackLayout>
                         </Frame>
                     </StackLayout>
-
+                   
                 </StackLayout>
 
 
             </ScrollView>
-
-            <FlexLayout HeightRequest="75" JustifyContent="SpaceBetween" AlignItems="Center" Padding="25,0,25,0" IsVisible="false" BackgroundColor="White" x:Name="CostFlexLayout">
-                <StackLayout Orientation="Horizontal">
-                    <StackLayout VerticalOptions="Center">
-                        <Image Source="upcart.png" HeightRequest="28"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Vertical">
-                        <Label Text="Toplam" HorizontalOptions="Center"/>
-                        <StackLayout Orientation="Horizontal" Spacing="5">
-
-                            <Label Text="{Binding SumOfCart}" HorizontalOptions="Center" TextColor="#f27a1b" FontAttributes="Bold"/>
-                            <Label Text="TL" HorizontalOptions="Center" TextColor="#f27a1b" FontAttributes="Bold"/>
+            <StackLayout>
+                <FlexLayout BackgroundColor="White" HeightRequest="75" JustifyContent="SpaceBetween" AlignItems="Center">
+                    <StackLayout Orientation="Vertical" Margin="30,0,0,0">
+                        <Label Text="Toplam:" HorizontalOptions="Center"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                            <Label Text="{Binding SumOfCart}" HorizontalOptions="Center"/>
+                            <Label Text="TL" HorizontalOptions="Center"/>
                         </StackLayout>
                     </StackLayout>
-                </StackLayout>
-                <StackLayout HorizontalOptions="Center" WidthRequest="250" >
-                    <Button Text="Sepeti Onayla" TextColor="White" TextTransform="None" CharacterSpacing="1" FontSize="16" FontAttributes="Bold" CornerRadius="5" HeightRequest="45" BackgroundColor="#f27a1b"></Button>
-                </StackLayout>
-            </FlexLayout>
+                    <StackLayout Margin="0,0,30,0">
+                        <Button Clicked="Click_Continue_to_Order" Text="Onayla Ve Bitir" TextColor="White" WidthRequest="200" TextTransform="None" CharacterSpacing="1" FontSize="16" FontAttributes="Bold" CornerRadius="5" HeightRequest="45" BackgroundColor="#f27a1b"></Button>
+                    </StackLayout>
+                </FlexLayout>
+            </StackLayout>
+
         </StackLayout>
 
     </ContentPage.Content>

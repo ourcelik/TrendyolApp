@@ -30,7 +30,16 @@ namespace TrendyolApp.ViewModels
 
         public ObservableCollection<CartModel> CartProducts
         {
-            get { return cartProducts; }
+            get
+            {
+                return cartProducts;
+            }
+            set
+            {
+                cartProducts = value;
+                UpdateCartCost();
+                OnPropertyChanged(nameof(CartProducts));
+            }
         }
         ObservableCollection<ProductModel> randomProducts;
 
@@ -78,13 +87,17 @@ namespace TrendyolApp.ViewModels
             cartProducts = CartData.CreateCart();
 
         }
-        private void UpdateCartCost()
+        public void UpdateCartCost()
         {
             SumOfCart = 0;
             foreach (var item in cartProducts)
             {
                 SumOfCart += item.Product.Price * item.Count;
             }
+        }
+        public void CleanToCart()
+        {
+            CartData.Clear();
         }
 
         public Command AddProduct { get; set; }

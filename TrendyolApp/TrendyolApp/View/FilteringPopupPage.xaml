@@ -1,0 +1,80 @@
+﻿<rg:PopupPage  xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:rg="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrendyolApp.View.FilteringPopupPage"
+             xmlns:ExpandableView="clr-namespace:Expandable;assembly=ExpandableView">
+    <ContentPage.Content>
+        
+            <StackLayout Spacing="0" WidthRequest="350" HorizontalOptions="End" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+            <ScrollView VerticalOptions="FillAndExpand">
+                <Frame VerticalOptions="FillAndExpand" CornerRadius="0" Padding="0">
+                    <StackLayout>
+                        <Frame VerticalOptions="Start" HasShadow="True" HeightRequest="30">
+                            <StackLayout>
+                                <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+                                    <Label Text="Filtreleme" TextColor="Black" FontAttributes="Bold" FontSize="18"/>
+                                    <StackLayout>
+                                        <Label Text="Temizle" TextColor="DarkGray" FontAttributes="Bold" FontSize="18"/>
+                                        <StackLayout.GestureRecognizers>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </FlexLayout>
+
+                            </StackLayout>
+                        </Frame>
+
+                        <!--#region Marka -->
+                        <StackLayout>
+                            <FlexLayout JustifyContent="SpaceBetween" Margin="20,0,20,0" AlignItems="Center" HeightRequest="50">
+                                <Label Text="Marka" FontAttributes="Bold" TextColor="Black"/>
+                                <Image Source="filterup.png" HeightRequest="30"/>
+                            </FlexLayout>
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.5" BackgroundColor="LightGray"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OpenPopupForBrand"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <!--#endregion-->
+                        <!--#region Fiyat -->
+                        <StackLayout>
+                            <FlexLayout JustifyContent="SpaceBetween" Margin="20,0,20,0" AlignItems="Center" HeightRequest="50">
+                                <Label Text="Fiyat" FontAttributes="Bold" TextColor="Black"/>
+                                <Image Source="filterup.png" HeightRequest="30"/>
+                            </FlexLayout>
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.5" BackgroundColor="LightGray"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OpenPopupForPrice"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <!--#endregion-->
+                        <!--#region Kategori -->
+                        <StackLayout>
+                            <FlexLayout JustifyContent="SpaceBetween" Margin="20,0,20,0" AlignItems="Center" HeightRequest="50">
+                                <Label Text="Kategori" FontAttributes="Bold" TextColor="Black"/>
+                                <Image Source="filterup.png" HeightRequest="30"/>
+                            </FlexLayout>
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.5" BackgroundColor="LightGray"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OpenPopupForCategory"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <!--#endregion-->
+
+
+                    </StackLayout>
+
+                </Frame>
+            </ScrollView>
+            <StackLayout  VerticalOptions="End" BackgroundColor="#f27a1c" HeightRequest="70">
+                <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="White" FontAttributes="Bold" FontSize="18" TextTransform="Uppercase" Text="ÜRÜNLERİ LİSTELE"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CompleteFiltering"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+
+        </StackLayout>
+        
+       
+    </ContentPage.Content>
+</rg:PopupPage>
