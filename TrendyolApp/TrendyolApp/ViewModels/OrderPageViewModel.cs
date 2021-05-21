@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using TrendyolApp.Data;
+using TrendyolApp.LocalService;
 using Xamarin.Forms;
 
 namespace TrendyolApp.ViewModels
 {
-    public class OrderPageViewModel :BaseViewModel
+    public class OrderPageViewModel : BaseViewModel
     {
         private decimal sumOfCart = 0;
         public decimal SumOfCart
@@ -23,16 +26,18 @@ namespace TrendyolApp.ViewModels
         }
         public OrderPageViewModel()
         {
-            UpdateCartCost();
+            UpdateCartCostAsync();
         }
-        private void UpdateCartCost()
+        private async void UpdateCartCostAsync()
         {
             SumOfCart = 0;
-            foreach (var item in CartData.Products)
+            var data = await CartService.GetAll();
+            foreach (var item in data)
             {
-                SumOfCart += item.Product.Price * item.Count;
+                var product = ProductData.GetProducts().Where(p => p.ProductId == item.ProductId).FirstOrDefault();
+                SumOfCart += product.Price * item.Count;
             }
         }
-       
+
     }
 }

@@ -4,9 +4,9 @@ using System.Text;
 
 namespace TrendyolApp.Models
 {
-    public class CartModel
+    public class Cart
     {
-        public CartModel()
+        public Cart()
         {
             Count = 1;
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrendyolApp.Data;
+using TrendyolApp.LocalService;
 using TrendyolApp.View.NavigationPages;
 using TrendyolApp.ViewModels;
 using Xamarin.Essentials;
@@ -19,22 +20,26 @@ namespace TrendyolApp.View
         {
             InitializeComponent();
             SetCartButton();
-            MessagingCenter.Subscribe<ProductDetailPage, bool>(this, "MakeVisible", (sender, value) =>
+            MessagingCenter.Subscribe<ProductDetailPage, bool>(this, "MakeVisible", async (sender, value) =>
             {
                 CartList.IsVisible = value;
                 EmptyList.IsVisible = !value;
-            });
-            MessagingCenter.Subscribe<OrderPage, bool>(this, "OrderCompleted", (sender,value) =>
-               {
-                   var context = (CartPageViewModel)BindingContext;
-                   context.CleanToCart();
-                   context.UpdateCartCost();
-                   CartList.IsVisible = false;
-                   CostFlexLayout.IsVisible = false;
-                   EmptyList.IsVisible = true;
+                var context = (CartPageViewModel)BindingContext;
+                await context.GetCartProduct();
+                context.UpdateCartCost();
 
-               });
-            if (CartData.IsNotEmpty())
+            });
+            MessagingCenter.Subscribe<OrderPage, bool>(this, "OrderCompleted", async (sender, value) =>
+            {
+                var context = (CartPageViewModel)BindingContext;
+                await context.CleanToCart();
+                context.UpdateCartCost();
+                CartList.IsVisible = false;
+                CostFlexLayout.IsVisible = false;
+                EmptyList.IsVisible = true;
+
+            });
+            if (CartService.GetAll() != null)
             {
                 ChangeCartVisibilty();
             }

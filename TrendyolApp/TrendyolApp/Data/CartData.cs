@@ -9,14 +9,14 @@ namespace TrendyolApp.Data
 {
     public static class CartData
     {
-        public static ObservableCollection<CartModel> Products { get { return products; } }
-        public static ObservableCollection<CartModel> products;
+        public static ObservableCollection<Cart> Products { get { return products; } }
+        public static ObservableCollection<Cart> products;
 
-        public static ObservableCollection<CartModel> CreateCart()
+        public static ObservableCollection<Cart> CreateCart()
         {
             if (products == null)
             {
-                products = new ObservableCollection<CartModel>();
+                products = new ObservableCollection<Cart>();
             }
             return Products;
         }
@@ -29,7 +29,7 @@ namespace TrendyolApp.Data
             {
                 count = 1 + data.Count;
                 Products.Remove(data);
-                Products.Add(new CartModel()
+                Products.Add(new Cart()
                 {
                     Product = product,
                     Count = count
@@ -37,7 +37,7 @@ namespace TrendyolApp.Data
                 count = 0;
                 return;
             }
-            Products.Add(new CartModel()
+            Products.Add(new Cart()
             {
                 Product = product
             });
@@ -49,7 +49,7 @@ namespace TrendyolApp.Data
             products.Clear();
         }
 
-        public static bool AlreadyExists(CartModel cartModel)
+        public static bool AlreadyExists(Cart cartModel)
         {
 
             return cartModel != null ? true : false;
@@ -71,7 +71,7 @@ namespace TrendyolApp.Data
             {
                 count = data.Count - 1;
                 Products.Remove(data);
-                Products.Add(new CartModel()
+                Products.Add(new Cart()
                 {
                     Product = product,
                     Count = count

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using TrendyolApp.Data;
+using TrendyolApp.LocalService;
 using TrendyolApp.Models;
+using TrendyolApp.SqlLiteModels;
 using Xamarin.Forms;
 
 namespace TrendyolApp.ViewModels
@@ -11,9 +13,11 @@ namespace TrendyolApp.ViewModels
     {
         public ProductDetailViewModel()
         {
-            AddProductToCart = new Command((product) =>
+            AddProductToCart = new Command(async (product) =>
             {
-                CartData.AddProduct((ProductModel)product);
+                var Product = (ProductModel)product;
+                await CartService.Add(new SqlLiteCart() { ProductId = Product.ProductId, Count = 1 });
+
 
             });
         }

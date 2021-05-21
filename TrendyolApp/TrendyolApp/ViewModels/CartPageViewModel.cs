@@ -8,12 +8,16 @@ using System.Linq;
 using TrendyolApp.Data;
 using TrendyolApp.Extensions;
 using Xamarin.Forms;
+using TrendyolApp.LocalService;
+using TrendyolApp.SqlLiteModels;
+using System.Threading.Tasks;
 
 namespace TrendyolApp.ViewModels
 {
+
     public class CartPageViewModel : BaseViewModel
     {
-        ObservableCollection<CartModel> cartProducts;
+        ObservableCollection<Cart> cartProducts;
         private decimal sumOfCart = 0;
         public decimal SumOfCart
         {
@@ -28,7 +32,7 @@ namespace TrendyolApp.ViewModels
             }
         }
 
-        public ObservableCollection<CartModel> CartProducts
+        public ObservableCollection<Cart> CartProducts
         {
             get
             {
@@ -46,13 +50,15 @@ namespace TrendyolApp.ViewModels
         public ObservableCollection<ProductModel> RandomProducts { get { return randomProducts; } }
         public CartPageViewModel()
         {
+            cartProducts = new ObservableCollection<Cart>();
             GetShuffleProducts();
             GetCartProduct();
             AddProduct = new Command(
-                (product) =>
+                async (product) =>
                 {
                     ProductModel _product = (ProductModel)product;
-                    CartData.AddProduct(_product);
+                    await CartService.Add(new SqlLiteCart() { ProductId = _product.ProductId, Count = 1 });
+                    await GetCartProduct();
                     UpdateCartCost();
                     OnPropertyChanged(nameof(sumOfCart));
                     OnPropertyChanged(nameof(CartProducts));
@@ -61,10 +67,12 @@ namespace TrendyolApp.ViewModels
 
                 );
             RemoveProduct = new Command(
-                (product) =>
+                async (product) =>
                 {
                     ProductModel _product = (ProductModel)product;
-                    CartData.RemoveProduct((ProductModel)product);
+                    var cart = await CartService.GetByProductId(_product.ProductId);
+                    await CartService.Delete(cart.Id);
+                    await GetCartProduct();
                     UpdateCartCost();
                     OnPropertyChanged(nameof(sumOfCart));
                     OnPropertyChanged(nameof(CartProducts));
@@ -72,7 +80,6 @@ namespace TrendyolApp.ViewModels
                 }
 
                 );
-            UpdateCartCost();
 
         }
 
@@ -82,26 +89,33 @@ namespace TrendyolApp.ViewModels
             data.Shuffle();
             randomProducts = data;
         }
-        private void GetCartProduct()
+        public async Task GetCartProduct()
         {
-            cartProducts = CartData.CreateCart();
+            var data = await CartService.GetAll();
+            CartProducts.Clear();
+            data.ForEach(c => CartProducts.Add(new Cart { Product = ProductData.Products.Where(p => p.ProductId == c.ProductId).FirstOrDefault(), Count = c.Count }));
+            UpdateCartCost();
+            OnPropertyChanged(nameof(sumOfCart));
+            OnPropertyChanged(nameof(CartProducts));
 
         }
         public void UpdateCartCost()
         {
             SumOfCart = 0;
-            foreach (var item in cartProducts)
+            foreach (var item in CartProducts)
             {
+
                 SumOfCart += item.Product.Price * item.Count;
             }
         }
-        public void CleanToCart()
+        public async Task CleanToCart()
         {
-            CartData.Clear();
+            await CartService.DeleteAllCartData();
         }
 
         public Command AddProduct { get; set; }
         public Command RemoveProduct { get; set; }
+        public Command ExecuteAsync { get; set; }
 
     }
 }
