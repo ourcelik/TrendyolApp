@@ -21,6 +21,8 @@ using TrendyolAppGraphQLBackend.GraphQL.Carts;
 using TrendyolAppGraphQLBackend.GraphQL.Currencies;
 using TrendyolAppGraphQLBackend.GraphQL.Photos;
 using TrendyolAppGraphQLBackend.GraphQL.Products;
+using TrendyolAppGraphQLBackend.GraphQL.SubCategories;
+using TrendyolAppGraphQLBackend.GraphQL.SubSubCategories;
 
 namespace TrendyolAppGraphQLBackend
 {
@@ -50,6 +52,8 @@ namespace TrendyolAppGraphQLBackend
                 .AddType<CurrencyType>()
                 .AddType<PhotoType>()
                 .AddType<ProductType>()
+                .AddType<SubCategoryType>()
+                .AddType<SubSubCategoryType>()
                 .AddFiltering()
                 .AddSorting()
                 .AddInMemorySubscriptions();

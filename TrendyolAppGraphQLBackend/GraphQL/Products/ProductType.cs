@@ -33,6 +33,14 @@ namespace TrendyolAppGraphQLBackend.GraphQL.Products
                 .ResolveWith<Resolvers>(r => r.GetPhotos(default!, default!))
                 .UseDbContext<TrendyolAppDbContext>()
                 .Description("Ürün Fotoğrafları");
+            descriptor
+                .Field(p => p.SubCategory)
+                .ResolveWith<Resolvers>(r => r.GetSubCategory(default!, default!))
+                .UseDbContext<TrendyolAppDbContext>();
+            descriptor
+                .Field(p => p.SubSubCategory)
+                .ResolveWith<Resolvers>(r => r.GetSubSubCategory(default!, default!))
+                .UseDbContext<TrendyolAppDbContext>();
 
         }
         private class Resolvers
@@ -53,6 +61,15 @@ namespace TrendyolAppGraphQLBackend.GraphQL.Products
             {
                 return context.Photos.Where(p => p.ProductId == product.Id);
             }
+            public SubCategory GetSubCategory(Product product, [ScopedService] TrendyolAppDbContext context)
+            {
+                return context.SubCategories.SingleOrDefault(c => c.Id == product.SubCategoryId);
+            }
+            public SubSubCategory GetSubSubCategory(Product product, [ScopedService] TrendyolAppDbContext context)
+            {
+                return context.SubSubCategories.SingleOrDefault(c => c.Id == product.SubSubCategoryId);
+            }
+
         }
 
     }

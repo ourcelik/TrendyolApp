@@ -53,6 +53,20 @@ namespace TrendyolAppGraphQLBackend.GraphQL
         {
             return context.Products;
         }
+        [UseDbContext(typeof(TrendyolAppDbContext))]
+        [UseFiltering]
+        [UseSorting]
+        public IQueryable<SubCategory> GetSubCategory([ScopedService] TrendyolAppDbContext context)
+        {
+            return context.SubCategories;
+        }
+        [UseDbContext(typeof(TrendyolAppDbContext))]
+        [UseFiltering]
+        [UseSorting]
+        public IQueryable<SubSubCategory> GetSubSubCategory([ScopedService] TrendyolAppDbContext context)
+        {
+            return context.SubSubCategories;
+        }
 
 
 

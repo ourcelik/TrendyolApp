@@ -17,11 +17,15 @@ namespace Entities.Concrete.Entities
         public int CategoryId { get; set; }
         public int TopPhotoId { get; set; }
         public int CurrencyId { get; set; }
+        public int SubCategoryId { get; set; }
+        public int SubSubCategoryId { get; set; }
         public Category Category { get; set; }
         [NotMapped]
         public Photo TopPhoto { get; set; }
         public Currency Currency { get; set; }
         public List<Photo> Photos { get; set; }
-
+        public SubCategory SubCategory { get; set; }
+        public SubSubCategory SubSubCategory { get; set; }
     }
+
 }

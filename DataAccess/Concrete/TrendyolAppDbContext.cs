@@ -22,6 +22,8 @@ namespace DataAccess.Concrete
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Photo> Photos { get; set; }
+        public DbSet<SubCategory> SubCategories { get; set; }
+        public DbSet<SubSubCategory> SubSubCategories { get; set; }
 
 
     }
