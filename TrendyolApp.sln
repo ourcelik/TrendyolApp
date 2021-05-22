@@ -9,13 +9,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrendyolApp.iOS", "Trendyol
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrendyolApp", "TrendyolApp\TrendyolApp\TrendyolApp.csproj", "{1E337484-98E6-4900-8883-2127DC97BFDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrendyolAppGraphQLBackend", "TrendyolAppGraphQLBackend\TrendyolAppGraphQLBackend.csproj", "{93F07403-CC26-4C4B-AB80-352E05D2A5B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrendyolAppGraphQLBackend", "TrendyolAppGraphQLBackend\TrendyolAppGraphQLBackend.csproj", "{93F07403-CC26-4C4B-AB80-352E05D2A5B5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{5D967750-728B-4153-9C6D-8611E397DF61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{BFB8310C-2082-4AD9-8682-B6FC4BEB56BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{BFB8310C-2082-4AD9-8682-B6FC4BEB56BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{52B8FD89-6FF6-4C2B-9513-B92AB91D97F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{52B8FD89-6FF6-4C2B-9513-B92AB91D97F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E786000B-08F2-4D29-AAFF-47CA5759546A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrendyolApp.UnitTests", "Tests\TrendyolApp.UnitTests\TrendyolApp.UnitTests.csproj", "{38C4ACD3-18AA-4695-9A6A-461FE5328538}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +121,18 @@ Global
 		{52B8FD89-6FF6-4C2B-9513-B92AB91D97F4}.Release|iPhone.Build.0 = Release|Any CPU
 		{52B8FD89-6FF6-4C2B-9513-B92AB91D97F4}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{52B8FD89-6FF6-4C2B-9513-B92AB91D97F4}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{38C4ACD3-18AA-4695-9A6A-461FE5328538}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38C4ACD3-18AA-4695-9A6A-461FE5328538}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38C4ACD3-18AA-4695-9A6A-461FE5328538}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{38C4ACD3-18AA-4695-9A6A-461FE5328538}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{38C4ACD3-18AA-4695-9A6A-461FE5328538}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{38C4ACD3-18AA-4695-9A6A-461FE5328538}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{38C4ACD3-18AA-4695-9A6A-461FE5328538}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38C4ACD3-18AA-4695-9A6A-461FE5328538}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38C4ACD3-18AA-4695-9A6A-461FE5328538}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{38C4ACD3-18AA-4695-9A6A-461FE5328538}.Release|iPhone.Build.0 = Release|Any CPU
+		{38C4ACD3-18AA-4695-9A6A-461FE5328538}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{38C4ACD3-18AA-4695-9A6A-461FE5328538}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -125,6 +141,7 @@ Global
 		{93F07403-CC26-4C4B-AB80-352E05D2A5B5} = {5D967750-728B-4153-9C6D-8611E397DF61}
 		{BFB8310C-2082-4AD9-8682-B6FC4BEB56BA} = {5D967750-728B-4153-9C6D-8611E397DF61}
 		{52B8FD89-6FF6-4C2B-9513-B92AB91D97F4} = {5D967750-728B-4153-9C6D-8611E397DF61}
+		{38C4ACD3-18AA-4695-9A6A-461FE5328538} = {E786000B-08F2-4D29-AAFF-47CA5759546A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C6CF294E-6454-4E61-87EE-764316C92679}

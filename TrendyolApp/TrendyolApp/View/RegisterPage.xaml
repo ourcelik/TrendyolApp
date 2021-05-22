@@ -6,9 +6,7 @@
              xmlns:ViewModels="clr-namespace:TrendyolApp.ViewModels"
              xmlns:box="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
              >
-    <ContentPage.BindingContext>
-        <ViewModels:LoginPageViewModel/>
-    </ContentPage.BindingContext>
+
 
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">

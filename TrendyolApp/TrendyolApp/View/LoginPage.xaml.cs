@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace TrendyolApp.View
         public LoginPage()
         {
             InitializeComponent();
+            InitializeViewModel();
         }
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
@@ -23,6 +25,14 @@ namespace TrendyolApp.View
         private void Register(object sender, EventArgs e)
         {
             this.Navigation.PushModalAsync(new RegisterPage());
+        }
+        private void InitializeViewModel()
+        {
+            using (var scope = App._container.BeginLifetimeScope())
+            {
+                var viewModel = scope.Resolve<LoginPageViewModel>();
+                BindingContext = viewModel;
+            }
         }
 
     }

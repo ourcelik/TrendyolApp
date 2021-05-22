@@ -9,7 +9,8 @@ using Firebase.Database.Query;
 
 namespace TrendyolApp.Services
 {
-    class UserService
+
+    class UserService : IUserService
     {
         FirebaseClient _client;
 

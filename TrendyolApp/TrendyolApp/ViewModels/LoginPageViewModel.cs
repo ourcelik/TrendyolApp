@@ -75,10 +75,13 @@ namespace TrendyolApp.ViewModels
                 return this.result;
             }
         }
-        public Command  LoginCommand { get; set; }
-        public Command RegisterCommand { get; set; }
-        public LoginPageViewModel()
+        public ICommand  LoginCommand { get; set; }
+        public ICommand RegisterCommand { get; set; }
+        public IUserService _userService { get; set; }
+        
+        public LoginPageViewModel(IUserService userService)
         {
+            _userService = userService;
             LoginCommand = new Command(async () => await LoginCommandAsync());
             RegisterCommand = new Command(async () => await RegisterCommandAsync());
         }
@@ -90,8 +93,8 @@ namespace TrendyolApp.ViewModels
             try
             {
                 IsBusy = true;
-                var userService = new UserService();
-                Result = await userService.RegisterUser(Username, Password);
+                //var userService = new UserService();
+                Result = await _userService.RegisterUser(Username, Password);
                 if (Result)
                 {
                     await Application.Current.MainPage.DisplayAlert("Success", "User Registered", "OK");
@@ -103,7 +106,6 @@ namespace TrendyolApp.ViewModels
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
             }
             finally
             {
@@ -119,8 +121,8 @@ namespace TrendyolApp.ViewModels
             try
             {
                 IsBusy = true;
-                var userService = new UserService();
-                Result = await userService.LoginUser(Username, Password);
+                //var userService = new UserService();
+                Result = await _userService.LoginUser(Username, Password);
                 if (Result)
                 {
                     Preferences.Set("Username", Username);
@@ -130,7 +132,8 @@ namespace TrendyolApp.ViewModels
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+                
+
             }
             finally
             {

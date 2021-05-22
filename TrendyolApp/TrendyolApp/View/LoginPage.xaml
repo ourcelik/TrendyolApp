@@ -6,9 +6,7 @@
              xmlns:ViewModels="clr-namespace:TrendyolApp.ViewModels"
              >
 
-    <ContentPage.BindingContext>
-        <ViewModels:LoginPageViewModel/>
-    </ContentPage.BindingContext>
+
 
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">

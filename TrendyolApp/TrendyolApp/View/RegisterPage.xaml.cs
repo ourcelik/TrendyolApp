@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using TrendyolApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,6 +16,7 @@ namespace TrendyolApp.View
         public RegisterPage()
         {
             InitializeComponent();
+            InitializeViewModel();
         }
 
         private void ChooseGender(object sender, EventArgs e)
@@ -69,6 +71,14 @@ namespace TrendyolApp.View
         private void RouteLoginPage(object sender, EventArgs e)
         {
             this.Navigation.PopModalAsync();
+        }
+        private void InitializeViewModel()
+        {
+            using (var scope = App._container.BeginLifetimeScope())
+            {
+                var viewModel = scope.Resolve<LoginPageViewModel>();
+                BindingContext = viewModel;
+            }
         }
     }
 }
