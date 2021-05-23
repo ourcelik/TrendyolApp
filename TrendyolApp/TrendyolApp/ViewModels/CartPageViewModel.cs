@@ -11,13 +11,16 @@ using Xamarin.Forms;
 using TrendyolApp.LocalService;
 using TrendyolApp.SqlLiteModels;
 using System.Threading.Tasks;
+using TrendyolApp.Services;
 
 namespace TrendyolApp.ViewModels
 {
 
     public class CartPageViewModel : BaseViewModel
     {
+        ProductService _productService;
         ObservableCollection<Cart> cartProducts;
+        ObservableCollection<Product> Products;
         private decimal sumOfCart = 0;
         public decimal SumOfCart
         {
@@ -45,23 +48,41 @@ namespace TrendyolApp.ViewModels
                 OnPropertyChanged(nameof(CartProducts));
             }
         }
-        ObservableCollection<ProductModel> randomProducts;
+        ObservableCollection<Product> randomProducts;
 
-        public ObservableCollection<ProductModel> RandomProducts { get { return randomProducts; } }
+        public ObservableCollection<Product> RandomProducts
+        {
+            get
+            {
+                return randomProducts;
+            }
+            set
+            {
+                randomProducts = value;
+                OnPropertyChanged(nameof(RandomProducts));
+            }
+        }
         public CartPageViewModel()
         {
+            _productService = new ProductService();
             cartProducts = new ObservableCollection<Cart>();
-            GetShuffleProducts();
-            GetCartProduct();
+            GetProductData().Await();
             AddProduct = new Command(
                 async (product) =>
                 {
-                    ProductModel _product = (ProductModel)product;
-                    await CartService.Add(new SqlLiteCart() { ProductId = _product.ProductId, Count = 1 });
-                    await GetCartProduct();
-                    UpdateCartCost();
-                    OnPropertyChanged(nameof(sumOfCart));
-                    OnPropertyChanged(nameof(CartProducts));
+                    try
+                    {
+                        Product _product = (Product)product;
+                        await CartService.Add(new SqlLiteCart() { ProductId = _product.ProductId, Count = 1 });
+                        await GetCartProduct();
+                        UpdateCartCost();
+                        OnPropertyChanged(nameof(SumOfCart));
+                        OnPropertyChanged(nameof(CartProducts));
+                    }
+                    catch (Exception)
+                    {
+
+                    }
 
                 }
 
@@ -69,13 +90,21 @@ namespace TrendyolApp.ViewModels
             RemoveProduct = new Command(
                 async (product) =>
                 {
-                    ProductModel _product = (ProductModel)product;
-                    var cart = await CartService.GetByProductId(_product.ProductId);
-                    await CartService.Delete(cart.Id);
-                    await GetCartProduct();
-                    UpdateCartCost();
-                    OnPropertyChanged(nameof(sumOfCart));
-                    OnPropertyChanged(nameof(CartProducts));
+                    try
+                    {
+                        Product _product = (Product)product;
+                        var cart = await CartService.GetByProductId(_product.ProductId);
+                        await CartService.Delete(cart.Id);
+                        await GetCartProduct();
+                        UpdateCartCost();
+                        OnPropertyChanged(nameof(SumOfCart));
+                        OnPropertyChanged(nameof(CartProducts));
+                    }
+                    catch (Exception)
+                    {
+
+                        
+                    }
 
                 }
 
@@ -85,17 +114,32 @@ namespace TrendyolApp.ViewModels
 
         private void GetShuffleProducts()
         {
-            var data = ProductData.GetProducts();
-            data.Shuffle();
-            randomProducts = data;
+            #region sonradan
+            
+
+            #endregion
+            #region orjinal
+            //var data = ProductData.GetProducts();
+            #endregion
+            Products.Shuffle();
+            RandomProducts = Products;
         }
+
+        private async Task GetProductData()
+        {
+            var data = await _productService.GetProductsAsync();
+            Products = data.model.Products;
+            GetShuffleProducts();
+            await GetCartProduct();
+        }
+
         public async Task GetCartProduct()
         {
             var data = await CartService.GetAll();
             CartProducts.Clear();
-            data.ForEach(c => CartProducts.Add(new Cart { Product = ProductData.Products.Where(p => p.ProductId == c.ProductId).FirstOrDefault(), Count = c.Count }));
+            data.ForEach(c => CartProducts.Add(new Cart { Product = Products.Where(p => p.ProductId == c.ProductId).FirstOrDefault(), Count = c.Count }));
             UpdateCartCost();
-            OnPropertyChanged(nameof(sumOfCart));
+            OnPropertyChanged(nameof(SumOfCart));
             OnPropertyChanged(nameof(CartProducts));
 
         }

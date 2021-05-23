@@ -19,7 +19,7 @@ namespace TrendyolApp.ViewModels
             set
             {
                 intervals = value;
-                OnPropertyChanged(nameof(intervals));
+                OnPropertyChanged(nameof(Intervals));
             }
         }
         public FilterByPricePopupViewModel()

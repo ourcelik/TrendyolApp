@@ -16,69 +16,69 @@ namespace TrendyolApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderingPopupPage : PopupPage
     {
-        ObservableCollection<ProductModel> products;
-        public OrderingPopupPage()
+        ObservableCollection<Product> _products;
+        public OrderingPopupPage(ObservableCollection<Product> products)
         {
+            
             InitializeComponent();
-            products = new ObservableCollection<ProductModel>();
+            _products = products;
         }
 
-        private void SuggestionFilter(object sender, EventArgs e)
+        private async void SuggestionFilter(object sender, EventArgs e)
         {
-            products.Clear();
-            OrderingPopupViewModel.GetFilterData().OrderBy(p => p.ProductName).ToList().ForEach(p => products.Add(p));
-            MessagingCenter.Send<OrderingPopupPage, ObservableCollection<ProductModel>>(this, "Ordering", products);
-            App.Current.MainPage.Navigation.PopPopupAsync();
+            var data = _products.OrderBy(p => p.ProductName).ToList();
+            _products.Clear();
+            data.ForEach(p => _products.Add(p));
+            await App.Current.MainPage.Navigation.PopPopupAsync();
         }
-        private void LowtoHighPriceFilter(object sender, EventArgs e)
+        private async void LowtoHighPriceFilter(object sender, EventArgs e)
         {
-            products.Clear();
-            OrderingPopupViewModel.GetFilterData().OrderBy(p => p.Price).ToList().ForEach(p => products.Add(p));
-            MessagingCenter.Send<OrderingPopupPage, ObservableCollection<ProductModel>>(this, "Ordering", products);
-            App.Current.MainPage.Navigation.PopPopupAsync();
+            var data = _products.OrderBy(p => p.Price).ToList();
+            _products.Clear();
+            data.ForEach(p => _products.Add(p));
+            await App.Current.MainPage.Navigation.PopPopupAsync();
 
-
-        }
-        private void HighToLowPriceFilter(object sender, EventArgs e)
-        {
-            products.Clear();
-            OrderingPopupViewModel.GetFilterData().OrderByDescending(p => p.Price).ToList().ForEach(p => products.Add(p));
-
-            MessagingCenter.Send<OrderingPopupPage, ObservableCollection<ProductModel>>(this, "Ordering", products);
-            App.Current.MainPage.Navigation.PopPopupAsync();
 
         }
-        private void BestSellerFilter(object sender, EventArgs e)
+        private async void HighToLowPriceFilter(object sender, EventArgs e)
         {
-            products.Clear();
-            OrderingPopupViewModel.GetFilterData().OrderBy(p => p.ProductName).ToList().ForEach(p => products.Add(p));
-            MessagingCenter.Send<OrderingPopupPage, ObservableCollection<ProductModel>>(this, "Ordering", products);
-            App.Current.MainPage.Navigation.PopPopupAsync();
+            var data = _products.OrderByDescending(p => p.Price).ToList();
+            _products.Clear();
+            data.ForEach(p => _products.Add(p));
+
+            await App.Current.MainPage.Navigation.PopPopupAsync();
 
         }
-        private void MostFavouriteFilter(object sender, EventArgs e)
+        private async void BestSellerFilter(object sender, EventArgs e)
         {
-            products.Clear();
-            OrderingPopupViewModel.GetFilterData().OrderBy(p => p.ProductName).ToList().ForEach(p => products.Add(p));
-            MessagingCenter.Send<OrderingPopupPage, ObservableCollection<ProductModel>>(this, "Ordering", products);
-            App.Current.MainPage.Navigation.PopPopupAsync();
+            var data = _products.OrderBy(p => p.ProductName).ToList();
+            _products.Clear();
+            data.ForEach(p => _products.Add(p));
+            await App.Current.MainPage.Navigation.PopPopupAsync();
 
         }
-        private void NewestFilter(object sender, EventArgs e)
+        private async void MostFavouriteFilter(object sender, EventArgs e)
         {
-            products.Clear();
-            OrderingPopupViewModel.GetFilterData().OrderBy(p => p.ProductName).ToList().ForEach(p => products.Add(p));
-            MessagingCenter.Send<OrderingPopupPage, ObservableCollection<ProductModel>>(this, "Ordering", products);
-            App.Current.MainPage.Navigation.PopPopupAsync();
+            var data = _products.OrderBy(p => p.ProductName).ToList();
+            _products.Clear();
+            data.ForEach(p => _products.Add(p));
+            await App.Current.MainPage.Navigation.PopPopupAsync();
 
         }
-        private void MostEvaluatedFilter(object sender, EventArgs e)
+        private async void NewestFilter(object sender, EventArgs e)
         {
-            products.Clear();
-            OrderingPopupViewModel.GetFilterData().OrderBy(p => p.ProductName).ToList().ForEach(p => products.Add(p));
-            MessagingCenter.Send<OrderingPopupPage, ObservableCollection<ProductModel>>(this, "Ordering", products);
-            App.Current.MainPage.Navigation.PopPopupAsync();
+            var data = _products.OrderBy(p => p.ProductName).ToList();
+            _products.Clear();
+            data.ForEach(p => _products.Add(p));
+            await App.Current.MainPage.Navigation.PopPopupAsync();
 
+        }
+        private async void MostEvaluatedFilter(object sender, EventArgs e)
+        {
+            var data = _products.OrderBy(p => p.ProductName).ToList();
+            _products.Clear();
+            data.ForEach(p => _products.Add(p));
+            await App.Current.MainPage.Navigation.PopPopupAsync();
         }
     }
 }

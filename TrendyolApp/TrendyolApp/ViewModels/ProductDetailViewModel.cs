@@ -15,8 +15,14 @@ namespace TrendyolApp.ViewModels
         {
             AddProductToCart = new Command(async (product) =>
             {
-                var Product = (ProductModel)product;
-                await CartService.Add(new SqlLiteCart() { ProductId = Product.ProductId, Count = 1 });
+                var Product = (Product)product;
+                try
+                {
+                    await CartService.Add(new SqlLiteCart() { ProductId = Product.ProductId, Count = 1 });
+                }
+                catch (Exception)
+                {
+                }
 
 
             });

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TrendyolApp.Models;
 using Firebase.Database.Query;
+using TrendyolApp.Services.abstracts;
 
 namespace TrendyolApp.Services
 {

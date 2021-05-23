@@ -7,51 +7,63 @@ using TrendyolApp.Data;
 using TrendyolApp.Models;
 using System.Linq;
 using TrendyolApp.Extensions;
+using TrendyolApp.Services;
+using System.Threading.Tasks;
 
 namespace TrendyolApp.ViewModels
 {
     public class HomePageViewModel : BaseViewModel
     {
-        public ObservableCollection<CarouselAdModel> Ads
+        ProductService _productService;
+        ObservableCollection<Product> products;
+        public ObservableCollection<CarouselAd> Ads
         {
             get
             {
                 return ads;
             }
         }
-        ObservableCollection<ProductModel> randomProducts;
-        ObservableCollection<ProductModel> randomProductsMan;
-        public ObservableCollection<ProductModel> RandomProducts { get { return randomProducts; } }
-        public ObservableCollection<ProductModel> RandomProductsMan { get { return randomProductsMan; } }
+        ObservableCollection<Product> randomProducts;
+        ObservableCollection<Product> randomProductsMan;
+        public ObservableCollection<Product> RandomProducts { get { return randomProducts; } }
+        public ObservableCollection<Product> RandomProductsMan { get { return randomProductsMan; } }
         public HomePageViewModel()
         {
-            ads = new ObservableCollection<CarouselAdModel>
+            _productService = new ProductService();
+            ads = new ObservableCollection<CarouselAd>
             {
-                new CarouselAdModel{ Id = 0,Url = "https://cdn.dsmcdn.com/marketing/datascience/automation/2021/4/10/Ceptelefonuaksesuarlari_Erkek_Webbig_202104101607.jpg"},
-                new CarouselAdModel{ Id = 0,Url = "https://cdn.dsmcdn.com/marketing/datascience/automation/2021/4/10/Ceptelefonuaksesuarlari_Erkek_Webbig_202104101607.jpg"},
-                new CarouselAdModel{ Id = 0,Url = "https://cdn.dsmcdn.com/marketing/datascience/automation/2021/4/10/Ceptelefonuaksesuarlari_Erkek_Webbig_202104101607.jpg"},
-                new CarouselAdModel{ Id = 0,Url = "https://cdn.dsmcdn.com/marketing/datascience/automation/2021/4/10/Ceptelefonuaksesuarlari_Erkek_Webbig_202104101607.jpg"},
-                new CarouselAdModel{ Id = 0,Url = "https://cdn.dsmcdn.com/marketing/datascience/automation/2021/4/10/Ceptelefonuaksesuarlari_Erkek_Webbig_202104101607.jpg"},
-                new CarouselAdModel{ Id = 0,Url = "https://cdn.dsmcdn.com/marketing/datascience/automation/2021/4/10/Ceptelefonuaksesuarlari_Erkek_Webbig_202104101607.jpg"},
-                new CarouselAdModel{ Id = 0,Url = "https://cdn.dsmcdn.com/marketing/datascience/automation/2021/4/10/Ceptelefonuaksesuarlari_Erkek_Webbig_202104101607.jpg"},
+                new CarouselAd{ Id = 0,Url = "https://cdn.dsmcdn.com/marketing/datascience/automation/2021/4/10/Ceptelefonuaksesuarlari_Erkek_Webbig_202104101607.jpg"},
+                new CarouselAd{ Id = 0,Url = "https://cdn.dsmcdn.com/marketing/datascience/automation/2021/4/10/Ceptelefonuaksesuarlari_Erkek_Webbig_202104101607.jpg"},
+                new CarouselAd{ Id = 0,Url = "https://cdn.dsmcdn.com/marketing/datascience/automation/2021/4/10/Ceptelefonuaksesuarlari_Erkek_Webbig_202104101607.jpg"},
+                new CarouselAd{ Id = 0,Url = "https://cdn.dsmcdn.com/marketing/datascience/automation/2021/4/10/Ceptelefonuaksesuarlari_Erkek_Webbig_202104101607.jpg"},
+                new CarouselAd{ Id = 0,Url = "https://cdn.dsmcdn.com/marketing/datascience/automation/2021/4/10/Ceptelefonuaksesuarlari_Erkek_Webbig_202104101607.jpg"},
+                new CarouselAd{ Id = 0,Url = "https://cdn.dsmcdn.com/marketing/datascience/automation/2021/4/10/Ceptelefonuaksesuarlari_Erkek_Webbig_202104101607.jpg"},
+                new CarouselAd{ Id = 0,Url = "https://cdn.dsmcdn.com/marketing/datascience/automation/2021/4/10/Ceptelefonuaksesuarlari_Erkek_Webbig_202104101607.jpg"},
 
             };
-            randomProducts = new ObservableCollection<ProductModel>();
-            randomProductsMan = new ObservableCollection<ProductModel>();
-            GetRandomProducts(randomProducts);
-            GetRandomProducts(RandomProductsMan);
+            randomProducts = new ObservableCollection<Product>();
+            randomProductsMan = new ObservableCollection<Product>();
+            GetProducts().Await();
         }
-        readonly ObservableCollection<CarouselAdModel> ads;
+        readonly ObservableCollection<CarouselAd> ads;
 
-        public void GetRandomProducts(ObservableCollection<ProductModel> _randomProducts)
+        public void GetRandomProducts(ObservableCollection<Product> _randomProducts)
         {
-            var data = ProductData.GetProducts();
-            data.Shuffle();
-            var data2 = data.Where(p => p.ProductId > 0 && p.ProductId < 20);
+            
+            products.Shuffle();
+            var data2 = products.Where(p => p.ProductId > 0 && p.ProductId < 20);
             foreach (var item in data2)
             {
                 _randomProducts.Add(item);
             }
+
+        }
+        public async Task GetProducts()
+        {
+            var data = await _productService.GetProductsAsync();
+            products = data.model.Products;
+            GetRandomProducts(randomProducts);
+            GetRandomProducts(randomProductsMan);
 
         }
 

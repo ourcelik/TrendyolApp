@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrendyolApp.Services;
 using TrendyolApp.View.Login;
 using TrendyolApp.View.NavigationPages;
 using Xamarin.Essentials;
@@ -46,6 +47,7 @@ namespace TrendyolApp.View
                 _accountPage = new LoginAccountPage();
                 _favouritePage = new LoginFavouritePage();
             }
+            //Demo();
             _cartPage = new CartPage();
             _categoryPage = new CategoryPage();
             _categoryNavigationPage = new HomeNavigationPage(_categoryPage);
@@ -87,6 +89,22 @@ namespace TrendyolApp.View
 
 
         }
+
+        //private async static void Demo()
+        //{
+        //    var CategoryService = new CategoryService();
+        //    var data = await CategoryService.GetCategories();
+        //    var ProductService = new ProductService();
+        //    var products = await ProductService.GetProducts();
+        //    var carouselAd = new CarouselAdService();
+        //    var car = await carouselAd.GetAds();
+        //    var photo = new PhotoService();
+        //    var photos = await photo.GetPhotos();
+        //    var subcat = new SubCategoryService();
+        //    var datas = await subcat.GetSubCategories();
+        //    var subsubcat = new SubSubCategoryService();
+        //    var data2 = await subsubcat.GetSubSubCategories();
+        //}
 
         private void TabPage_CurrentPageChanged(object sender, EventArgs e)
         {

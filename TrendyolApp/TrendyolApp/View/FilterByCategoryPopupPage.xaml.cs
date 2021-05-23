@@ -16,12 +16,12 @@ namespace TrendyolApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FilterByCategoryPopupPage : PopupPage
     {
-        private ObservableCollection<ProductModel> _products;
+        private ObservableCollection<Product> _products;
         public List<string> _selectedCategories { get; set; }
 
 
 
-        public FilterByCategoryPopupPage(ObservableCollection<ProductModel> products)
+        public FilterByCategoryPopupPage(ObservableCollection<Product> products)
         {
             _products = products;
             InitializeComponent();
@@ -43,7 +43,7 @@ namespace TrendyolApp.View
         private void CategorySelected(object sender, SelectedItemChangedEventArgs e)
         {
             var view = (ListView)sender;
-            var data = (ProductModel)view.SelectedItem;
+            var data = (Product)view.SelectedItem;
             if (!_selectedCategories.Contains(data.SubCategory.CategoryName))
             {
                 _selectedCategories.Add(data.SubCategory.CategoryName);

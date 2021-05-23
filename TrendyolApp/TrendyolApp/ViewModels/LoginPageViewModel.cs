@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TrendyolApp.Services;
+using TrendyolApp.Services.abstracts;
 using TrendyolApp.View;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -104,7 +105,7 @@ namespace TrendyolApp.ViewModels
                     await Application.Current.MainPage.DisplayAlert("Error", "User already exists", "OK");
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
             finally

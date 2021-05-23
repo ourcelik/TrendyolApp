@@ -16,11 +16,11 @@ namespace TrendyolApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FilterByBrandPopupPage : PopupPage
     {
-        private ObservableCollection<ProductModel> _products;
+        private ObservableCollection<Product> _products;
         public List<string> _selectedBrands { get; set; }
 
 
-        public FilterByBrandPopupPage(ObservableCollection<ProductModel> products)
+        public FilterByBrandPopupPage(ObservableCollection<Product> products)
         {
             _products = products;
             InitializeComponent();
@@ -32,7 +32,7 @@ namespace TrendyolApp.View
         private void BrandSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var view = (ListView)sender;
-            var data = (ProductModel)view.SelectedItem;
+            var data = (Product)view.SelectedItem;
             if (!_selectedBrands.Contains(data.Brand))
             {
                 _selectedBrands.Add(data.Brand);

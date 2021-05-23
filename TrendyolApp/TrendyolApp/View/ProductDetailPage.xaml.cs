@@ -12,12 +12,12 @@ namespace TrendyolApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProductDetailPage : ContentPage
     {
-        readonly private ProductModel _product;
+        readonly private Product _product;
 
         public ProductDetailPage(object product)
         {
             InitializeComponent();
-            _product = (ProductModel)product;
+            _product = (Product)product;
             ProductArea.BindingContext = _product; 
         }
 

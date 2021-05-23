@@ -30,5 +30,7 @@ namespace TrendyolAppGraphQLBackend.GraphQL
 
             return new AddCategoryPayload(category);
         }
+
+
     }
 }

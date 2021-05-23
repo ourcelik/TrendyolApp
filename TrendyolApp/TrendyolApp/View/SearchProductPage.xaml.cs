@@ -15,11 +15,11 @@ namespace TrendyolApp.View
     public partial class SearchProductPage : ContentPage
     {
         SearchProductViewModel context;
-        ObservableCollection<ProductModel> Products;
+        ObservableCollection<Product> Products;
         public SearchProductPage()
         {
             context = new SearchProductViewModel();
-            Products = new ObservableCollection<ProductModel>();
+            Products = new ObservableCollection<Product>();
             InitializeComponent();
             this.BindingContext = context;
 
@@ -28,15 +28,16 @@ namespace TrendyolApp.View
 
         }
 
-        private void SearchProducts(object sender, TextChangedEventArgs e)
+        private async void SearchProducts(object sender, TextChangedEventArgs e)
         {
             //Products
             Products.Clear();
 
-            context.GetSearchData(p => p.Brand.ToLower().Contains(e.NewTextValue.ToLower()) ||
+            var data = await context.GetSearchData(p => p.Brand.ToLower().Contains(e.NewTextValue.ToLower()) ||
             p.Category.CategoryName.ToLower().Contains(e.NewTextValue.ToLower()) ||
             p.ProductName.ToLower().Contains(e.NewTextValue.ToLower())
-            ).ForEach(p => Products.Add(p));
+            );
+            data.ForEach(p => Products.Add(p));
         }
     }
 }

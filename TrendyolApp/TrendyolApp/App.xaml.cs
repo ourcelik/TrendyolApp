@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using System;
 using TrendyolApp.Services;
+using TrendyolApp.Services.abstracts;
 using TrendyolApp.View;
 using TrendyolApp.ViewModels;
 using Xamarin.Forms;

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace TrendyolApp.Services
+namespace TrendyolApp.Services.abstracts
 {
     public interface IUserService
     {

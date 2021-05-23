@@ -23,15 +23,12 @@ namespace TrendyolApp.View
             InitializeComponent();
             _context = new ProductListViewModel(subSubCategory);
             this.BindingContext = _context;
-            MessagingCenter.Subscribe<OrderingPopupPage, ObservableCollection<ProductModel>>(this, "Ordering", (sender, value) =>
-            {
-                _context.ListProducts = value;
-            });
         }
 
         private async void OrderingPopup(object sender, EventArgs e)
         {
-            var pop = new OrderingPopupPage();
+            
+            var pop = new OrderingPopupPage(_context.ListProducts);
             await App.Current.MainPage.Navigation.PushPopupAsync(pop, true);
 
         }

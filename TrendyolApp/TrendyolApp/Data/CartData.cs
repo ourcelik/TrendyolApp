@@ -21,7 +21,7 @@ namespace TrendyolApp.Data
             return Products;
         }
 
-        public static void AddProduct(ProductModel product)
+        public static void AddProduct(Product product)
         {
             var data = Products.Where(c => c.Product.ProductId == product.ProductId).SingleOrDefault();
             var count = 0;
@@ -58,7 +58,7 @@ namespace TrendyolApp.Data
         {
             return Products.Count != 0 ? true : false;
         }
-        public static void RemoveProduct(ProductModel product)
+        public static void RemoveProduct(Product product)
         {
             var count = 0;
             var data = Products.Where(p => p.Product.ProductId == product.ProductId).SingleOrDefault();

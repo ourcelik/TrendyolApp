@@ -20,7 +20,7 @@ namespace TrendyolApp.View
 
         public Interval _priceInterval { get; set; }
 
-        public FilterByPricePopupPage(ObservableCollection<ProductModel> products)
+        public FilterByPricePopupPage(ObservableCollection<Product> products)
         {
             InitializeComponent();
             BindingContext = new FilterByPricePopupViewModel();

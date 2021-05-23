@@ -15,13 +15,13 @@ namespace TrendyolApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FilteringPopupPage : PopupPage
     {
-        ObservableCollection<ProductModel> _products;
-        List<ProductModel> _filteredProducts;
+        ObservableCollection<Product> _products;
+        List<Product> _filteredProducts;
         List<string> _brands;
         List<string> _categories;
         public Interval _priceInterval { get; set; }
 
-        public FilteringPopupPage(ObservableCollection<ProductModel> products)
+        public FilteringPopupPage(ObservableCollection<Product> products)
         {
             InitializeComponent();
             _products = products;

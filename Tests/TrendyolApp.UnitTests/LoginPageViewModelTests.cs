@@ -8,6 +8,7 @@ using TrendyolApp.Services;
 using System.Threading.Tasks;
 using Autofac;
 using Moq;
+using TrendyolApp.Services.abstracts;
 
 namespace TrendyolApp.UnitTests
 {
