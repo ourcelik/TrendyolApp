@@ -14,17 +14,23 @@ namespace TrendyolApp.ViewModels
 {
     public class LoginPageViewModel : BaseViewModel
     {
+        #region Variables
         readonly string facebook = "Facebook \nile bağlan";
+        readonly string google = "Google \nile bağlan";
+        private string username;
+        private string password;
+        private bool isBusy;
+        private bool result;
+        #endregion
+        #region Props
         public string Facebook
         {
             get { return facebook; }
         }
-        readonly string google = "Google \nile bağlan";
         public string Google
         {
             get { return google; }
         }
-        private string username;
         public string Username
         {
             set
@@ -37,7 +43,6 @@ namespace TrendyolApp.ViewModels
                 return this.username;
             }
         }
-        private string password;
         public string Password
         {
             set
@@ -50,7 +55,6 @@ namespace TrendyolApp.ViewModels
                 return this.password;
             }
         }
-        private bool isBusy;
         public bool IsBusy
         {
             set
@@ -63,7 +67,6 @@ namespace TrendyolApp.ViewModels
                 return this.isBusy;
             }
         }
-        private bool result;
         public bool Result
         {
             set
@@ -76,13 +79,21 @@ namespace TrendyolApp.ViewModels
                 return this.result;
             }
         }
-        public ICommand  LoginCommand { get; set; }
-        public ICommand RegisterCommand { get; set; }
-        public IUserService _userService { get; set; }
+        #endregion
+        #region Commands
+        public ICommand LoginCommand { get; set; }
+        public ICommand RegisterCommand { get; set; } 
+        #endregion
+        private IUserService _userService { get; set; }
         
         public LoginPageViewModel(IUserService userService)
         {
             _userService = userService;
+            DefineCommands();
+        }
+
+        private void DefineCommands()
+        {
             LoginCommand = new Command(async () => await LoginCommandAsync());
             RegisterCommand = new Command(async () => await RegisterCommandAsync());
         }
@@ -131,7 +142,7 @@ namespace TrendyolApp.ViewModels
                     Application.Current.MainPage = new TabPage();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 
 

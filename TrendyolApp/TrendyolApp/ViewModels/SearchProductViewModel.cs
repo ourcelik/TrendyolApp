@@ -9,16 +9,21 @@ using TrendyolApp.Data;
 using TrendyolApp.Extensions;
 using TrendyolApp.Models;
 using TrendyolApp.Services;
+using TrendyolApp.Services.abstracts;
 
 namespace TrendyolApp.ViewModels
 {
     class SearchProductViewModel : BaseViewModel
     {
-        ObservableCollection<Product> Products;
-        ProductService ProductService;
-        public SearchProductViewModel()
+        #region Services
+            readonly IProductService _productService;
+        #endregion
+        #region Variables
+        ObservableCollection<Product> Products; 
+        #endregion
+        public SearchProductViewModel(IProductService productService)
         {
-            ProductService = new ProductService();
+            _productService = productService;
         }
 
         public async Task<List<Product>> GetSearchData(Expression<Func<Product, bool>> filter = null)
@@ -29,7 +34,7 @@ namespace TrendyolApp.ViewModels
         }
         public async Task GetProducts()
         {
-            var data = await ProductService.GetProductsAsync();
+            var data = await _productService.GetProductsAsync();
             Products = data.model.Products;
         }
 

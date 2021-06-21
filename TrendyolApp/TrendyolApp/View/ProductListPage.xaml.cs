@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Extensions;
+﻿using Autofac;
+using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,8 +22,7 @@ namespace TrendyolApp.View
         public ProductListPage(SubSubCategory subSubCategory)
         {
             InitializeComponent();
-            _context = new ProductListViewModel(subSubCategory);
-            this.BindingContext = _context;
+            InitializeViewModel(subSubCategory);
         }
 
         private async void OrderingPopup(object sender, EventArgs e)
@@ -53,7 +53,16 @@ namespace TrendyolApp.View
             await this.Navigation.PushModalAsync(new ProductNavigationPage(new ProductDetailPage(product)), false);
 
         }
-
+        private async void InitializeViewModel(SubSubCategory subSubCategory)
+        {
+            using (var scope = App._container.BeginLifetimeScope())
+            {
+                var viewModel = scope.Resolve<ProductListViewModel>();
+                await viewModel.GetCategories(subSubCategory);
+                _context = viewModel;
+                BindingContext = viewModel;
+            }
+        }
         //private void SearchProducts(object sender, TextChangedEventArgs e)
         //{
         //    _context.ListProducts.Where(p => p.ProductName.Contains(e.NewTextValue));

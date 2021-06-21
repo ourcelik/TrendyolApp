@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Extensions;
+﻿using Autofac;
+using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
@@ -20,10 +21,10 @@ namespace TrendyolApp.View
 
         public Interval _priceInterval { get; set; }
 
-        public FilterByPricePopupPage(ObservableCollection<Product> products)
+        public FilterByPricePopupPage()
         {
             InitializeComponent();
-            BindingContext = new FilterByPricePopupViewModel();
+            InitializeViewModel();
         }
 
 
@@ -54,6 +55,14 @@ namespace TrendyolApp.View
             var gesture = (TapGestureRecognizer)data.GestureRecognizers[0];
             _priceInterval = (Interval)gesture.CommandParameter;
 
+        }
+        private void InitializeViewModel()
+        {
+            using (var scope = App._container.BeginLifetimeScope())
+            {
+                var viewModel = scope.Resolve<FilterByPricePopupViewModel>();
+                BindingContext = viewModel;
+            }
         }
     }
 

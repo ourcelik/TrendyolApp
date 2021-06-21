@@ -25,6 +25,11 @@ namespace TrendyolApp.View
         {
             InitializeComponent();
             _products = products;
+            InitializeMessagingCenters();
+        }
+
+        private void InitializeMessagingCenters()
+        {
             MessagingCenter.Subscribe<FilterByBrandPopupPage, List<string>>(this, "BrandFilter", (sender, value) =>
             {
                 _brands = value;
@@ -34,9 +39,9 @@ namespace TrendyolApp.View
                 _categories = value;
             });
             MessagingCenter.Subscribe<FilterByPricePopupPage, Interval>(this, "IntervalFilter", (sender, value) =>
-             {
-                 _priceInterval = value;
-             });
+            {
+                _priceInterval = value;
+            });
         }
 
         private void OpenPopupForBrand(object sender, EventArgs e)
@@ -50,7 +55,7 @@ namespace TrendyolApp.View
         }
         private void OpenPopupForPrice(object sender, EventArgs e)
         {
-            App.Current.MainPage.Navigation.PushPopupAsync(new FilterByPricePopupPage(_products));
+            App.Current.MainPage.Navigation.PushPopupAsync(new FilterByPricePopupPage());
 
         }
 

@@ -4,22 +4,36 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TrendyolApp.Data;
 using TrendyolApp.Extensions;
 using TrendyolApp.Models;
 using TrendyolApp.Services;
+using TrendyolApp.Services.abstracts;
 using Xamarin.Forms;
 
 namespace TrendyolApp.ViewModels
 {
     public class CategoryPageViewModel : BaseViewModel
     {
-        CategoryService _categoryService;
-        SubCategoryService _subCategoryService;
-        SubSubCategoryService _subSubCategoryService;
-
+        #region Services
+        readonly ICategoryService _categoryService;
+        readonly ISubCategoryService _subCategoryService;
+        readonly ISubSubCategoryService _subSubCategoryService;
+        #endregion
+        #region Commands
+        public ICommand GetSubCategories { get; set; }
+        public ICommand GetSubSubCategories { get; set; }
+        #endregion
+        #region Variables
+        public ObservableCollection<Category> categories;
+        public ObservableCollection<SubCategory> subCategories;
+        private ObservableCollection<SubSubCategory> subSubCategories;
+        #endregion
+        #region Props
         public ObservableCollection<Category> Categories
         {
+
             get { return categories; }
             set
             {
@@ -27,7 +41,6 @@ namespace TrendyolApp.ViewModels
                 OnPropertyChanged(nameof(Categories));
             }
         }
-        public ObservableCollection<Category> categories;
         public ObservableCollection<SubCategory> SubCategories
         {
             get { return subCategories; }
@@ -37,7 +50,6 @@ namespace TrendyolApp.ViewModels
                 OnPropertyChanged(nameof(SubCategories));
             }
         }
-        public ObservableCollection<SubCategory> subCategories;
         public ObservableCollection<SubSubCategory> SubSubCategories
         {
             get { return subSubCategories; }
@@ -46,17 +58,23 @@ namespace TrendyolApp.ViewModels
                 subSubCategories = value;
                 OnPropertyChanged(nameof(SubSubCategories));
             }
-    }
-        private ObservableCollection<SubSubCategory> subSubCategories;
-        public CategoryPageViewModel()
+        }
+        #endregion
+        public CategoryPageViewModel(ICategoryService categoryService, ISubCategoryService subCategoryService, ISubSubCategoryService subSubCategoryService)
         {
-            _categoryService = new CategoryService();
-            _subCategoryService = new SubCategoryService();
-            _subSubCategoryService = new SubSubCategoryService();
-            GetCategories().Await();
+            _categoryService = categoryService;
+            _subCategoryService = subCategoryService;
+            _subSubCategoryService = subSubCategoryService;
             subCategories = new ObservableCollection<SubCategory>();
             subSubCategories = new ObservableCollection<SubSubCategory>();
+            GetCategories().Await();
             OnPropertyChanged(nameof(SubSubCategories));
+            DefineCommands();
+
+        }
+
+        private void DefineCommands()
+        {
             GetSubCategories = new Command(async (id) =>
             {
                 subCategories.Clear();
@@ -70,6 +88,7 @@ namespace TrendyolApp.ViewModels
                 data.model.subSubCategories.Where(sc => sc.SubCategoryId == (int)id).ToList().ForEach((sc) => SubSubCategories.Add(sc));
             });
         }
+
         private async Task GetCategories()
         {
             var data = await _categoryService.GetCategoriesAsync();
@@ -77,7 +96,6 @@ namespace TrendyolApp.ViewModels
             Categories = data.model.Categories;
         }
 
-        public Command GetSubCategories { get; }
-        public Command GetSubSubCategories { get; }
+  
     }
 }

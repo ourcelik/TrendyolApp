@@ -10,14 +10,20 @@ using TrendyolApp.Data;
 using TrendyolApp.Extensions;
 using TrendyolApp.Models;
 using TrendyolApp.Services;
+using TrendyolApp.Services.abstracts;
 
 namespace TrendyolApp.ViewModels
 {
     class ProductListViewModel : BaseViewModel
     {
+        #region Services
+        readonly IProductService _productService;
+        #endregion
+        #region Variables
         ObservableCollection<Product> Products;
-        ProductService ProductService;
         ObservableCollection<Product> listProducts;
+        #endregion
+        #region Props
         public ObservableCollection<Product> ListProducts
         {
             get
@@ -30,18 +36,15 @@ namespace TrendyolApp.ViewModels
                 OnPropertyChanged(nameof(ListProducts));
             }
 
-        }
+        } 
+        #endregion
 
-        public ProductListViewModel(SubSubCategory category)
+        public ProductListViewModel(IProductService productService)
         {
             listProducts = new ObservableCollection<Product>();
-            ProductService = new ProductService();
-            GetCategories(category).Await();
+            _productService = productService;
         }
-        public ProductListViewModel()
-        {
-
-        }
+     
         public async Task GetCategories(SubSubCategory category)
         {
             var products = await GetProducts(category);
@@ -50,11 +53,11 @@ namespace TrendyolApp.ViewModels
             && p.SubSubCategory.SubSubCategoryId == category.SubSubCategoryId).ToList();
 
             data.ForEach(p => ListProducts.Add(p));
-            Thread.Sleep(450);
+            OnPropertyChanged(nameof(listProducts));
         }
         public async Task<ObservableCollection<Product>> GetProducts(SubSubCategory category)
         {
-            var data = await ProductService.GetProductsAsync();
+            var data = await _productService.GetProductsAsync();
             Products = data.model.Products;
             return Products;
         }

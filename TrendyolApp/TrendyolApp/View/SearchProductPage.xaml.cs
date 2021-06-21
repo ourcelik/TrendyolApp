@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -18,11 +19,9 @@ namespace TrendyolApp.View
         ObservableCollection<Product> Products;
         public SearchProductPage()
         {
-            context = new SearchProductViewModel();
             Products = new ObservableCollection<Product>();
             InitializeComponent();
-            this.BindingContext = context;
-
+            InitializeViewModel();
             SearchResultList.ItemsSource = Products;
 
 
@@ -38,6 +37,15 @@ namespace TrendyolApp.View
             p.ProductName.ToLower().Contains(e.NewTextValue.ToLower())
             );
             data.ForEach(p => Products.Add(p));
+        }
+        private void InitializeViewModel()
+        {
+            using (var scope = App._container.BeginLifetimeScope())
+            {
+                var viewModel = scope.Resolve<SearchProductViewModel>();
+                context = viewModel;
+                BindingContext = viewModel;
+            }
         }
     }
 }

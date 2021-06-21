@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 using TrendyolApp.Data;
 using TrendyolApp.LocalService;
 using TrendyolApp.Models;
@@ -11,7 +12,16 @@ namespace TrendyolApp.ViewModels
 {
     public class ProductDetailViewModel : BaseViewModel
     {
+        #region Commands
+        public ICommand AddProductToCart { get; set; } 
+        #endregion
+
         public ProductDetailViewModel()
+        {
+            DefineCommands();
+        }
+
+        private void DefineCommands()
         {
             AddProductToCart = new Command(async (product) =>
             {
@@ -27,6 +37,5 @@ namespace TrendyolApp.ViewModels
 
             });
         }
-        public Command AddProductToCart { get; }
     }
 }

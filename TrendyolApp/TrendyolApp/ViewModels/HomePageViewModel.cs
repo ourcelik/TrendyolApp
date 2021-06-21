@@ -9,13 +9,22 @@ using System.Linq;
 using TrendyolApp.Extensions;
 using TrendyolApp.Services;
 using System.Threading.Tasks;
+using TrendyolApp.Services.abstracts;
 
 namespace TrendyolApp.ViewModels
 {
     public class HomePageViewModel : BaseViewModel
     {
-        ProductService _productService;
+        #region Services
+        readonly IProductService _productService; 
+        #endregion
+        #region Variables
         ObservableCollection<Product> products;
+        ObservableCollection<Product> randomProducts;
+        ObservableCollection<Product> randomProductsMan; 
+        #endregion
+
+        #region Props
         public ObservableCollection<CarouselAd> Ads
         {
             get
@@ -23,13 +32,25 @@ namespace TrendyolApp.ViewModels
                 return ads;
             }
         }
-        ObservableCollection<Product> randomProducts;
-        ObservableCollection<Product> randomProductsMan;
-        public ObservableCollection<Product> RandomProducts { get { return randomProducts; } }
-        public ObservableCollection<Product> RandomProductsMan { get { return randomProductsMan; } }
-        public HomePageViewModel()
+
+        public ObservableCollection<Product> RandomProducts
         {
-            _productService = new ProductService();
+            get
+            {
+                return randomProducts;
+            }
+        }
+        public ObservableCollection<Product> RandomProductsMan
+        {
+            get
+            {
+                return randomProductsMan;
+            }
+        } 
+        #endregion
+        public HomePageViewModel(IProductService productService)
+        {
+            _productService = productService;
             ads = new ObservableCollection<CarouselAd>
             {
                 new CarouselAd{ Id = 0,Url = "https://cdn.dsmcdn.com/marketing/datascience/automation/2021/4/10/Ceptelefonuaksesuarlari_Erkek_Webbig_202104101607.jpg"},
@@ -49,7 +70,7 @@ namespace TrendyolApp.ViewModels
 
         public void GetRandomProducts(ObservableCollection<Product> _randomProducts)
         {
-            
+
             products.Shuffle();
             var data2 = products.Where(p => p.ProductId > 0 && p.ProductId < 20);
             foreach (var item in data2)

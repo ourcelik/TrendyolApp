@@ -9,7 +9,10 @@ namespace TrendyolApp.ViewModels
 {
     class FilterByPricePopupViewModel : BaseViewModel
     {
-        ObservableCollection<Interval> intervals;
+        #region Variables
+        ObservableCollection<Interval> intervals; 
+        #endregion
+        #region Props
         public ObservableCollection<Interval> Intervals
         {
             get
@@ -21,7 +24,8 @@ namespace TrendyolApp.ViewModels
                 intervals = value;
                 OnPropertyChanged(nameof(Intervals));
             }
-        }
+        } 
+        #endregion
         public FilterByPricePopupViewModel()
         {
             Intervals = IntervalData.Intervals;

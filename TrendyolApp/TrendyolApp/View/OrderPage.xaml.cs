@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace TrendyolApp.View
         public OrderPage()
         {
             InitializeComponent();
+            InitializeViewModel();
         }
 
         private void ClickBackButton(object sender, EventArgs e)
@@ -29,6 +31,14 @@ namespace TrendyolApp.View
             MessagingCenter.Send<OrderPage, bool>(this, "OrderCompleted", true);
 
 
+        }
+        private void InitializeViewModel()
+        {
+            using (var scope = App._container.BeginLifetimeScope())
+            {
+                var viewModel = scope.Resolve<OrderPageViewModel>();
+                BindingContext = viewModel;
+            }
         }
     }
 }

@@ -54,7 +54,7 @@ namespace TrendyolApp.View
             }
         }
 
-        private void campaign_checkbox(object sender, EventArgs e)
+        private void Campaign_checkbox(object sender, EventArgs e)
         {
             if (!campaignBox.IsChecked)
             {

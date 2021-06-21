@@ -12,16 +12,28 @@ using TrendyolApp.LocalService;
 using TrendyolApp.SqlLiteModels;
 using System.Threading.Tasks;
 using TrendyolApp.Services;
+using TrendyolApp.Services.abstracts;
+using System.Windows.Input;
 
 namespace TrendyolApp.ViewModels
 {
 
     public class CartPageViewModel : BaseViewModel
     {
-        ProductService _productService;
+        #region Services
+        readonly IProductService _productService;
+        #endregion
+        #region Commands
+        public ICommand AddProduct { get; set; }
+        public ICommand RemoveProduct { get; set; }
+        #endregion
+        #region Variables
         ObservableCollection<Cart> cartProducts;
         ObservableCollection<Product> Products;
+        ObservableCollection<Product> randomProducts;
         private decimal sumOfCart = 0;
+        #endregion
+        #region Props
         public decimal SumOfCart
         {
             get
@@ -48,7 +60,6 @@ namespace TrendyolApp.ViewModels
                 OnPropertyChanged(nameof(CartProducts));
             }
         }
-        ObservableCollection<Product> randomProducts;
 
         public ObservableCollection<Product> RandomProducts
         {
@@ -62,11 +73,17 @@ namespace TrendyolApp.ViewModels
                 OnPropertyChanged(nameof(RandomProducts));
             }
         }
-        public CartPageViewModel()
+        #endregion
+        public CartPageViewModel(IProductService productService)
         {
-            _productService = new ProductService();
+            _productService = productService;
             cartProducts = new ObservableCollection<Cart>();
             GetProductData().Await();
+            DefineCommands();
+        }
+
+        private void DefineCommands()
+        {
             AddProduct = new Command(
                 async (product) =>
                 {
@@ -103,24 +120,16 @@ namespace TrendyolApp.ViewModels
                     catch (Exception)
                     {
 
-                        
+
                     }
 
                 }
 
                 );
-
         }
 
         private void GetShuffleProducts()
         {
-            #region sonradan
-            
-
-            #endregion
-            #region orjinal
-            //var data = ProductData.GetProducts();
-            #endregion
             Products.Shuffle();
             RandomProducts = Products;
         }
@@ -157,9 +166,7 @@ namespace TrendyolApp.ViewModels
             await CartService.DeleteAllCartData();
         }
 
-        public Command AddProduct { get; set; }
-        public Command RemoveProduct { get; set; }
-        public Command ExecuteAsync { get; set; }
+
 
     }
 }

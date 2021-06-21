@@ -9,7 +9,7 @@ namespace TrendyolApp.Extensions
     {
         public static void Shuffle<T>(this ObservableCollection<T> list)
         {
-            Random random = new Random();
+            Random random = new();
             int n = list.Count;
             while (n > 1)
             {

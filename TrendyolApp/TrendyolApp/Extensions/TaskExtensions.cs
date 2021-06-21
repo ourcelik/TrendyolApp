@@ -7,11 +7,12 @@ namespace TrendyolApp.Extensions
 {
     public static class TaskExtensions
     {
-        public async static void Await(this Task task,Action<Exception> errorCallBack = null)
+        public async static void Await(this Task task,Action ContinueWith = null,Action<Exception> errorCallBack = null)
         {
             try
             {
                 await task;
+                ContinueWith?.Invoke();
             }
             catch (Exception ex)
             {

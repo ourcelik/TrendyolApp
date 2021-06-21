@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,18 @@ namespace TrendyolApp.View
         public CartPage()
         {
             InitializeComponent();
+            InitializeViewModel();
             SetCartButton();
+            InitiliazeMessagingCenters();
+            if (CartService.GetAll() != null)
+            {
+                ChangeCartVisibilty();
+            }
+
+        }
+
+        private void InitiliazeMessagingCenters()
+        {
             MessagingCenter.Subscribe<ProductDetailPage, bool>(this, "MakeVisible", async (sender, value) =>
             {
                 CartList.IsVisible = value;
@@ -39,12 +51,8 @@ namespace TrendyolApp.View
                 EmptyList.IsVisible = true;
 
             });
-            if (CartService.GetAll() != null)
-            {
-                ChangeCartVisibilty();
-            }
-
         }
+
         private void VisibilityClick(object sender, EventArgs e)
         {
             ChangeCartVisibilty();
@@ -88,6 +96,14 @@ namespace TrendyolApp.View
             else
             {
                 CartPageButton.Text = "Alışverişe Devam Et";
+            }
+        }
+        private void InitializeViewModel()
+        {
+            using (var scope = App._container.BeginLifetimeScope())
+            {
+                var viewModel = scope.Resolve<CartPageViewModel>();
+                BindingContext = viewModel;
             }
         }
     }

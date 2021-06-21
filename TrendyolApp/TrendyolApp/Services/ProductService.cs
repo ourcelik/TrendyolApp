@@ -5,28 +5,21 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using TrendyolApp.Models;
+using TrendyolApp.Services.abstracts;
 
 namespace TrendyolApp.Services
 {
-    public class ProductService
+    public class ProductService : BaseService<ProductModel>,IProductService
     {
-        HttpClient client;
         public ProductService()
         {
         }
 
         public async Task<DataModel<ProductModel>> GetProductsAsync()
         {
-            var EndPoint = ConnectionHelper.url;
-            var httpClientHandler = new HttpClientHandler();
-            httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+            return await GetDataAsync(new QueryObject
             {
-                return true;
-            };
-            client = new HttpClient(httpClientHandler) { BaseAddress = new Uri(EndPoint) };
-            var queryObject = new
-            {
-                query = @"query{
+                Query = @"query{
                   product{
                     id
                     brand
@@ -67,24 +60,8 @@ namespace TrendyolApp.Services
     
                   }
                 }
-                        ",
-                variables = new { }
-            };
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Post,
-                Content = new StringContent(JsonConvert.SerializeObject(queryObject, Formatting.Indented), Encoding.UTF8, "application/json")
-            };
-            DataModel<ProductModel> responseObj;
-            using (var response = await client.SendAsync(request))
-            {
-                response.EnsureSuccessStatusCode();
-
-                var responseString = await response.Content.ReadAsStringAsync();
-                responseObj = JsonConvert.DeserializeObject<DataModel<ProductModel>>(responseString);
-            };
-
-            return responseObj;
+                        "
+            });
         }
     }
 

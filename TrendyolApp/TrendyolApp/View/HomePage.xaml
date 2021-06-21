@@ -5,9 +5,6 @@
              xmlns:viewModels="clr-namespace:TrendyolApp.ViewModels"
              xmlns:tabView ="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
              >
-    <ContentPage.BindingContext>
-        <viewModels:HomePageViewModel></viewModels:HomePageViewModel>
-    </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="notification.png" Clicked="ToolbarItem_Clicked">
 

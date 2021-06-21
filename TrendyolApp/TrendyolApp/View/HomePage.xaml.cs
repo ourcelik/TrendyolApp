@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TrendyolApp.View.NavigationPages;
+using TrendyolApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,6 +19,7 @@ namespace TrendyolApp.View
         public HomePage()
         {
             InitializeComponent();
+            InitializeViewModel();
         }
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)
@@ -31,6 +34,14 @@ namespace TrendyolApp.View
             await this.Navigation.PushModalAsync(new ProductNavigationPage(new ProductDetailPage(product)), false);
 
 
+        }
+        private void InitializeViewModel()
+        {
+            using (var scope = App._container.BeginLifetimeScope())
+            {
+                var viewModel = scope.Resolve<HomePageViewModel>();
+                BindingContext = viewModel;
+            }
         }
 
 

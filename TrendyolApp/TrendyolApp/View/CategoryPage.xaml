@@ -14,9 +14,7 @@
             </SearchBar>
         </Frame>
     </NavigationPage.TitleView>
-    <ContentPage.BindingContext>
-        <ViewModels:CategoryPageViewModel/>
-    </ContentPage.BindingContext>
+
     <ContentPage.Content>
         <StackLayout>
             <Grid>

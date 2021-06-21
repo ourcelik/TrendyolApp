@@ -4,9 +4,7 @@
              x:Class="TrendyolApp.View.CartPage"
              xmlns:viewModels="clr-namespace:TrendyolApp.ViewModels"
              >
-    <ContentPage.BindingContext>
-        <viewModels:CartPageViewModel></viewModels:CartPageViewModel>
-    </ContentPage.BindingContext>
+   
     <ContentPage.Content>
         <StackLayout>
             <ScrollView VerticalScrollBarVisibility="Never" BackgroundColor="#f5f5f5">

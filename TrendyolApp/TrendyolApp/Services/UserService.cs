@@ -13,7 +13,7 @@ namespace TrendyolApp.Services
 
     class UserService : IUserService
     {
-        FirebaseClient _client;
+        readonly FirebaseClient _client;
 
         public UserService()
         {

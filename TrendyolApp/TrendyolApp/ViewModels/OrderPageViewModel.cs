@@ -9,15 +9,21 @@ using TrendyolApp.Extensions;
 using TrendyolApp.LocalService;
 using TrendyolApp.Models;
 using TrendyolApp.Services;
+using TrendyolApp.Services.abstracts;
 using Xamarin.Forms;
 
 namespace TrendyolApp.ViewModels
 {
     public class OrderPageViewModel : BaseViewModel
     {
-        ProductService ProductService;
+        #region Services
+        readonly IProductService _productService;
+        #endregion
+        #region Variables
         ObservableCollection<Product> Products;
         private decimal sumOfCart = 0;
+        #endregion
+        #region Props
         public decimal SumOfCart
         {
             get
@@ -29,10 +35,11 @@ namespace TrendyolApp.ViewModels
                 sumOfCart = value;
                 OnPropertyChanged(nameof(SumOfCart));
             }
-        }
-        public OrderPageViewModel()
+        } 
+        #endregion
+        public OrderPageViewModel(IProductService productService)
         {
-            ProductService = new ProductService();
+            _productService = productService;
             GetProducts().Await();
         }
         private async Task UpdateCartCostAsync()
@@ -47,7 +54,7 @@ namespace TrendyolApp.ViewModels
         }
         private async Task GetProducts()
         {
-            var data = await ProductService.GetProductsAsync();
+            var data = await _productService.GetProductsAsync();
             Products = data.model.Products;
             await UpdateCartCostAsync();
         }

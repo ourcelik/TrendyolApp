@@ -84,7 +84,7 @@ namespace TrendyolApp.LocalService
         {
             await Init();
 
-            var _cart = await db.UpdateAsync(cart);
+            await db.UpdateAsync(cart);
 
         }
         public static async Task DeleteAllCartData()

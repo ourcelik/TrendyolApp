@@ -1,4 +1,5 @@
-﻿using Expandable;
+﻿using Autofac;
+using Expandable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TrendyolApp.Models;
 using TrendyolApp.View.NavigationPages;
+using TrendyolApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,7 +20,7 @@ namespace TrendyolApp.View
         public CategoryPage()
         {
             InitializeComponent();
-
+            InitializeViewModel();
         }
 
 
@@ -40,6 +42,14 @@ namespace TrendyolApp.View
             var subSubCategory = (SubSubCategory)button.CommandParameter;
             Application.Current.MainPage.Navigation.PushModalAsync(new HomeNavigationPage(new ProductListPage(subSubCategory)));
 
+        }
+        private void InitializeViewModel()
+        {
+            using (var scope = App._container.BeginLifetimeScope())
+            {
+                var viewModel = scope.Resolve<CategoryPageViewModel>();
+                BindingContext = viewModel;
+            }
         }
     }
 }

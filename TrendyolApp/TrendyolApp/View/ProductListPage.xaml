@@ -8,7 +8,6 @@
 
 
     <ContentPage.BindingContext>
-        <viewModels:ProductListViewModel></viewModels:ProductListViewModel>
     </ContentPage.BindingContext>
     <NavigationPage.TitleView>
         <Frame Padding="0" Margin="0" CornerRadius="15" HasShadow="False" BorderColor="LightGray">

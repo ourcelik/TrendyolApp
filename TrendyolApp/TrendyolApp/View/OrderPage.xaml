@@ -17,9 +17,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="ssl.png"/>
     </ContentPage.ToolbarItems>
-    <ContentPage.BindingContext>
-        <viewModels:OrderPageViewModel/>
-    </ContentPage.BindingContext>
+   
 
     <ContentPage.Content>
         <StackLayout>

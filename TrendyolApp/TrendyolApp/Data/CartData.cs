@@ -52,11 +52,11 @@ namespace TrendyolApp.Data
         public static bool AlreadyExists(Cart cartModel)
         {
 
-            return cartModel != null ? true : false;
+            return cartModel != null;
         }
         public static bool IsNotEmpty()
         {
-            return Products.Count != 0 ? true : false;
+            return Products.Count != 0;
         }
         public static void RemoveProduct(Product product)
         {

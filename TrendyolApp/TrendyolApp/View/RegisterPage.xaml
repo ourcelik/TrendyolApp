@@ -77,7 +77,7 @@
 
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
-                                <box:CheckBox x:Name="campaignBox" CornerRadius="3" IconColor="White" Type="Material" BorderColor="#aaaaaa" CheckChanged="campaign_checkbox"/>
+                                <box:CheckBox x:Name="campaignBox" CornerRadius="3" IconColor="White" Type="Material" BorderColor="#aaaaaa" CheckChanged="Campaign_checkbox"/>
                                 <Label>
                                     <Label.FormattedText>
                                         <FormattedString>
