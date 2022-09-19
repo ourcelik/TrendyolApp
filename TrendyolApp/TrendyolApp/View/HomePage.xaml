@@ -92,29 +92,18 @@
                                 <!--#region BigAd-->
                                 <StackLayout BackgroundColor="Transparent" HeightRequest="220" VerticalOptions="Start">
                                     <Frame HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Padding="0">
-                                        <Image Source="https://cdn.dsmcdn.com/ty101/campaign/banners/original/562780/a72cd9778e_3_new.jpg" BackgroundColor="Black" Aspect="Fill"/>
+                                        <Image Source="https://cdn.dsmcdn.com/ty101/campaign/banners/original/562780/a72cd9778e_3_new.jpg" BackgroundColor="Black" Aspect="AspectFill"/>
                                     </Frame>
                                 </StackLayout>
                                 <!--#endregion-->
                                 <!--#region BigAd-->
                                 <StackLayout BackgroundColor="Transparent" HeightRequest="220" VerticalOptions="Start">
                                     <Frame HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Padding="0">
-                                        <Image Source="https://cdn.dsmcdn.com/ty101/pimWidgetApi/1329450_webBig_20210407132956_mango110321webc2.jpg" BackgroundColor="Black" Aspect="Fill"/>
+                                        <Image Source="https://cdn.dsmcdn.com/ty101/pimWidgetApi/1329450_webBig_20210407132956_mango110321webc2.jpg" BackgroundColor="Black" Aspect="AspectFill"/>
                                     </Frame>
                                 </StackLayout>
                                 <!--#endregion-->
-                                <!--#region BigAd-->
-                                <StackLayout BackgroundColor="Transparent" HeightRequest="220" VerticalOptions="Start">
-                                    <Frame HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Padding="0">
-                                        <Image Source="https://cdn.dsmcdn.com/ty103/campaign/banners/original/563363/4fa4438db0_3_new.jpg" BackgroundColor="Black" Aspect="Fill"/>
-                                    </Frame>
-                                </StackLayout>
-                                <StackLayout BackgroundColor="Transparent" HeightRequest="220" VerticalOptions="Start">
-                                    <Frame HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Padding="0">
-                                        <Image Source="https://cdn.dsmcdn.com/ty100/campaign/banners/original/560452/0d83b152c4_1_new.jpg" BackgroundColor="Black" Aspect="Fill"/>
-                                    </Frame>
-                                </StackLayout>
-                                <!--#endregion-->
+                              
 
                                 <StackLayout Orientation="Vertical">
                                     <Grid>

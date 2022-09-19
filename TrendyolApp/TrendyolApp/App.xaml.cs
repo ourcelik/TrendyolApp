@@ -4,6 +4,7 @@ using TrendyolApp.Services;
 using TrendyolApp.Services.abstracts;
 using TrendyolApp.View;
 using TrendyolApp.ViewModels;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
