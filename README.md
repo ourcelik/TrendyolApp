@@ -4,7 +4,7 @@
 
 ----------
 
-## Kullanılan Teknolojiler
+## Tech Stack
 
 **Client:** *SqlLite,Xamarin*
 
