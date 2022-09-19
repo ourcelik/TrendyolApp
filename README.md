@@ -22,25 +22,25 @@
 
 ## Screenshots
 
-<img src="./screenshots/HomePage.png" alt="allItems" width="130"/>
-<img src="./screenshots/HomePage_2.png" alt="allItems" width="130"/>
-<img src="./screenshots/CartPageBlank.png" alt="allItems" width="130"/>
-<img src="./screenshots/CartPage.png" alt="allItems" width="130"/>
-<img src="./screenshots/CategoryPage.png" alt="allItems" width="130"/>
-<img src="./screenshots/CategoryPage_2.png" alt="allItems" width="130"/>
-<img src="./screenshots/ProductListPage.png" alt="allItems" width="130"/>
-<img src="./screenshots/FilterPopup_2.png" alt="allItems" width="130"/>
-<img src="./screenshots/FilterPopup_3.png" alt="allItems" width="130"/>
-<img src="./screenshots/FilterPopup_4.png" alt="allItems" width="130"/>
-<img src="./screenshots/FilterPopup_5.png" alt="allItems" width="130"/>
-<img src="./screenshots/OrderPopup.png" alt="allItems" width="130"/>
-<img src="./screenshots/ProductDetailPage.png" alt="allItems" width="130"/>
-<img src="./screenshots/LoginPage.png" alt="allItems" width="130"/>
-<img src="./screenshots/RegisterPage.png" alt="allItems" width="130"/>
-<img src="./screenshots/ForgetPasswordPage.png" alt="allItems" width="130"/>
-<img src="./screenshots/FilterPopup.png" alt="allItems" width="130"/>
-<img src="./screenshots/AccountNotLogin.png" alt="allItems" width="130"/>
-<img src="./screenshots/FavNotLogin.png" alt="allItems" width="130"/>
+<img src="./Screenshots/HomePage.png" alt="allItems" width="130"/>
+<img src="./Screenshots/HomePage_2.png" alt="allItems" width="130"/>
+<img src="./Screenshots/CartPageBlank.png" alt="allItems" width="130"/>
+<img src="./Screenshots/CartPage.png" alt="allItems" width="130"/>
+<img src="./Screenshots/CategoryPage.png" alt="allItems" width="130"/>
+<img src="./Screenshots/CategoryPage_2.png" alt="allItems" width="130"/>
+<img src="./Screenshots/ProductListPage.png" alt="allItems" width="130"/>
+<img src="./Screenshots/FilterPopup_2.png" alt="allItems" width="130"/>
+<img src="./Screenshots/FilterPopup_3.png" alt="allItems" width="130"/>
+<img src="./Screenshots/FilterPopup_4.png" alt="allItems" width="130"/>
+<img src="./Screenshots/FilterPopup_5.png" alt="allItems" width="130"/>
+<img src="./Screenshots/OrderPopup.png" alt="allItems" width="130"/>
+<img src="./Screenshots/ProductDetailPage.png" alt="allItems" width="130"/>
+<img src="./Screenshots/LoginPage.png" alt="allItems" width="130"/>
+<img src="./Screenshots/RegisterPage.png" alt="allItems" width="130"/>
+<img src="./Screenshots/ForgetPasswordPage.png" alt="allItems" width="130"/>
+<img src="./Screenshots/FilterPopup.png" alt="allItems" width="130"/>
+<img src="./Screenshots/AccountNotLogin.png" alt="allItems" width="130"/>
+<img src="./Screenshots/FavNotLogin.png" alt="allItems" width="130"/>
 
 ----------
 
