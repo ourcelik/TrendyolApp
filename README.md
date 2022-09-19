@@ -22,7 +22,6 @@
 
 ## Screenshots
 
-<div>
 <img src="./screenshots/HomePage.png" alt="allItems" width="130"/>
 <img src="./screenshots/HomePage_2.png" alt="allItems" width="130"/>
 <img src="./screenshots/CartPageBlank.png" alt="allItems" width="130"/>
@@ -42,7 +41,6 @@
 <img src="./screenshots/FilterPopup.png" alt="allItems" width="130"/>
 <img src="./screenshots/AccountNotLogin.png" alt="allItems" width="130"/>
 <img src="./screenshots/FavNotLogin.png" alt="allItems" width="130"/>
-</div>
 
 ----------
 
